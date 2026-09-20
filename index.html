@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Isaac M. Morel Lopez — Mechanical Engineering Portfolio</title>
+<meta name="description" content="Mechanical engineering portfolio: CFD, structural FEA and fatigue design, thermal systems, mechatronics, and NSF-funded research on heat in the NYC subway. CCNY 2027.">
+<meta name="author" content="Isaac M. Morel Lopez">
+
+<!-- ============================================================
+     BEFORE YOU PUBLISH: replace YOUR-SITE-URL below with the real
+     address (for example https://isaacmorel.github.io/portfolio/).
+     These four lines control what shows up when you paste the link
+     into LinkedIn, iMessage, WhatsApp or Slack.
+     ============================================================ -->
+<link rel="canonical" href="YOUR-SITE-URL">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Isaac M. Morel Lopez — Mechanical Engineering Portfolio">
+<meta property="og:description" content="Design, simulation, and the check that they agree. CFD, FEA, thermal systems, mechatronics. CCNY 2027.">
+<meta property="og:url" content="YOUR-SITE-URL">
+<meta property="og:image" content="YOUR-SITE-URL/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1d1f'/%3E%3Ctext x='32' y='43' font-family='Helvetica,Arial' font-size='30' font-weight='700' fill='%23ffffff' text-anchor='middle'%3EIM%3C/text%3E%3C/svg%3E">
+<meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+/* ============================================================
+   DESIGN TOKENS
+   Every colour and size in this page comes from here.
+   Change a value once, the whole page follows.
+   ============================================================ */
+:root{
+  --bg:        #ffffff;   /* page background */
+  --bg-alt:    #f5f5f7;   /* the light grey band colour */
+  --card:      #ffffff;   /* card surface */
+  --text:      #1d1d1f;   /* near-black, never pure #000 */
+  --text-2:    #6e6e73;   /* secondary / caption grey */
+  --text-3:    #86868b;   /* faintest grey */
+  --line:      #d2d2d7;   /* hairline dividers */
+  --line-soft: #e8e8ed;
+  --blue:      #0066cc;   /* the one accent colour */
+  --blue-soft: #e8f0fb;
+  --shadow:    0 4px 24px rgba(0,0,0,.05);
+
+  --radius:    18px;
+  --radius-sm: 12px;
+  --page:      980px;     /* content width, same as apple.com */
+}
+
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#000000; --bg-alt:#0d0d0f; --card:#1a1a1c;
+    --text:#f5f5f7; --text-2:#a1a1a6; --text-3:#86868b;
+    --line:#2c2c2e; --line-soft:#232325;
+    --blue:#2997ff; --blue-soft:#12233a;
+    --shadow:0 4px 24px rgba(0,0,0,.5);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#000000; --bg-alt:#0d0d0f; --card:#1a1a1c;
+  --text:#f5f5f7; --text-2:#a1a1a6; --text-3:#86868b;
+  --line:#2c2c2e; --line-soft:#232325;
+  --blue:#2997ff; --blue-soft:#12233a;
+  --shadow:0 4px 24px rgba(0,0,0,.5);
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  font-size:17px;
+  line-height:1.55;
+  letter-spacing:-.011em;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{margin:0;font-weight:600;line-height:1.08;letter-spacing:-.03em;text-wrap:balance;}
+p{margin:0;}
+a{color:var(--blue);text-decoration:none;}
+a:hover{text-decoration:underline;}
+a:focus-visible,button:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px;}
+img{max-width:100%;}
+
+.band{padding:96px 24px;}
+.band.grey{background:var(--bg-alt);}
+.page{max-width:var(--page);margin:0 auto;}
+
+.eyebrow{
+  font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-3);
+}
+.lede{font-size:21px;line-height:1.45;color:var(--text-2);letter-spacing:-.015em;}
+
+/* ============================================================
+   NAV — translucent, sticks to the top
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb, var(--bg) 72%, transparent);
+  backdrop-filter:saturate(180%) blur(20px);
+  -webkit-backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:1px solid var(--line-soft);
+}
+.nav-in{
+  max-width:var(--page);margin:0 auto;padding:0 24px;
+  height:48px;display:flex;align-items:center;gap:28px;
+}
+.nav-name{font-size:15px;font-weight:600;letter-spacing:-.01em;color:var(--text);}
+.nav-name:hover{text-decoration:none;}
+.nav-links{margin-left:auto;display:flex;gap:26px;}
+.nav-links a{font-size:13px;color:var(--text-2);}
+.nav-links a:hover{color:var(--text);text-decoration:none;}
+@media (max-width:700px){.nav-links{display:none;}}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{padding:104px 24px 80px;text-align:center;}
+.hero h1{
+  font-size:clamp(44px,8vw,80px);font-weight:700;letter-spacing:-.04em;
+  margin:14px 0 0;
+}
+.hero .role{
+  font-size:clamp(19px,3vw,26px);font-weight:600;letter-spacing:-.02em;
+  color:var(--text-2);margin-top:14px;
+}
+.hero .lede{max-width:660px;margin:26px auto 0;}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:34px;}
+.btn{
+  display:inline-block;padding:11px 22px;border-radius:980px;
+  font-size:15px;font-weight:500;letter-spacing:-.01em;
+  transition:opacity .18s, background .18s;
+}
+.btn-solid{background:var(--blue);color:#fff;}
+.btn-solid:hover{opacity:.85;text-decoration:none;}
+.btn-ghost{border:1px solid var(--line);color:var(--text);}
+.btn-ghost:hover{background:var(--bg-alt);text-decoration:none;}
+
+/* ============================================================
+   STATS
+   ============================================================ */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.stat{text-align:center;}
+.stat b{
+  display:block;font-size:clamp(34px,5vw,52px);font-weight:600;letter-spacing:-.035em;
+  font-variant-numeric:tabular-nums;line-height:1;
+}
+.stat span{display:block;font-size:14px;color:var(--text-2);margin-top:12px;line-height:1.4;}
+
+/* ============================================================
+   SECTION HEADINGS
+   ============================================================ */
+.sec-title{font-size:clamp(30px,5vw,48px);font-weight:600;letter-spacing:-.035em;}
+.sec-sub{font-size:19px;color:var(--text-2);margin-top:16px;max-width:640px;letter-spacing:-.012em;}
+.sec-head{margin-bottom:44px;}
+
+/* ============================================================
+   FILTER PILLS
+   ============================================================ */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:34px;}
+.pill{
+  font-family:inherit;font-size:14px;font-weight:500;letter-spacing:-.01em;
+  padding:8px 16px;border-radius:980px;border:1px solid var(--line);
+  background:transparent;color:var(--text-2);cursor:pointer;
+  transition:background .18s,color .18s,border-color .18s;
+}
+.pill:hover{border-color:var(--text-3);color:var(--text);}
+.pill[aria-pressed="true"]{background:var(--text);border-color:var(--text);color:var(--bg);}
+
+/* ============================================================
+   PROJECT CARDS
+   ============================================================ */
+.card{
+  background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);
+  padding:40px 40px 42px;margin-bottom:22px;
+}
+.card[hidden]{display:none;}
+.card-meta{
+  display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;
+  font-size:12px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:16px;
+}
+.card-meta .code{color:var(--blue);}
+.card-meta .when{margin-left:auto;letter-spacing:.05em;}
+.card h3{font-size:clamp(23px,3.2vw,32px);letter-spacing:-.03em;}
+.thesis{font-size:19px;color:var(--text-2);margin-top:14px;letter-spacing:-.014em;line-height:1.45;}
+
+.cols{display:grid;grid-template-columns:1.5fr 1fr;gap:44px;margin-top:34px;}
+.blk{margin-top:26px;}
+.blk:first-child{margin-top:0;}
+.blk h4{
+  font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:9px;
+}
+.blk p{font-size:16px;line-height:1.6;}
+.blk p + p{margin-top:12px;}
+.blk ul{margin:0;padding-left:20px;font-size:16px;line-height:1.6;}
+.blk li{margin-top:9px;}
+.blk li::marker{color:var(--text-3);}
+
+/* spec panel */
+.panel{background:var(--bg-alt);border-radius:var(--radius-sm);padding:22px 24px;}
+.panel + .panel{margin-top:16px;}
+.panel h4{
+  font-size:12px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--text-3);margin-bottom:12px;
+}
+.spec{width:100%;border-collapse:collapse;font-size:14px;}
+.spec td{padding:7px 0;border-bottom:1px solid var(--line-soft);vertical-align:baseline;}
+.spec tr:last-child td{border-bottom:0;}
+.spec td:first-child{color:var(--text-2);padding-right:14px;}
+.spec td:last-child{text-align:right;font-weight:500;font-variant-numeric:tabular-nums;}
+
+.tags{display:flex;flex-wrap:wrap;gap:7px;margin-top:28px;}
+.tag{
+  font-size:12.5px;font-weight:500;padding:5px 11px;border-radius:980px;
+  background:var(--bg-alt);color:var(--text-2);
+}
+
+figure{margin:16px 0 0;}
+figure img{display:block;width:100%;border-radius:var(--radius-sm);background:#fff;}
+figcaption{font-size:12.5px;line-height:1.45;color:var(--text-3);margin-top:9px;}
+.figs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px;}
+.figs figure{margin:0;}
+
+/* ============================================================
+   TIMELINE
+   ============================================================ */
+.tl{border-top:1px solid var(--line-soft);}
+.tl-row{
+  display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:baseline;
+  padding:22px 0;border-bottom:1px solid var(--line-soft);
+}
+.tl-when{font-size:14px;color:var(--text-3);font-variant-numeric:tabular-nums;}
+.tl-what{font-size:18px;font-weight:600;letter-spacing:-.02em;}
+.tl-what span{display:block;font-size:15px;font-weight:400;color:var(--text-2);margin-top:4px;letter-spacing:-.01em;}
+.tl-where{font-size:14px;color:var(--text-2);text-align:right;}
+
+/* ============================================================
+   SKILLS + EDUCATION
+   ============================================================ */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.srow{display:grid;grid-template-columns:120px 1fr;gap:18px;padding:14px 0;border-top:1px solid var(--line-soft);font-size:16px;}
+.srow:first-of-type{border-top:0;padding-top:0;}
+.srow dt{font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);padding-top:4px;}
+.srow dd{margin:0;}
+.edu{padding:16px 0;border-top:1px solid var(--line-soft);}
+.edu:first-of-type{border-top:0;padding-top:0;}
+.edu b{display:block;font-size:18px;font-weight:600;letter-spacing:-.02em;}
+.edu span{display:block;font-size:16px;color:var(--text-2);margin-top:3px;}
+.edu em{display:block;font-style:normal;font-size:14px;color:var(--text-3);margin-top:5px;}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px;}
+.chips span{font-size:12.5px;padding:5px 11px;border-radius:980px;background:var(--blue-soft);color:var(--blue);}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{padding:56px 24px;border-top:1px solid var(--line-soft);}
+.foot{max-width:var(--page);margin:0 auto;display:flex;flex-wrap:wrap;gap:14px 34px;align-items:baseline;}
+.foot .who{font-size:14px;font-weight:600;}
+.foot a{font-size:14px;}
+.foot .rights{margin-left:auto;font-size:13px;color:var(--text-3);}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:860px){
+  .band{padding:64px 20px;}
+  .hero{padding:64px 20px 52px;}
+  .cols{grid-template-columns:1fr;gap:30px;}
+  .two{grid-template-columns:1fr;}
+  .card{padding:28px 24px 30px;}
+  .stats{grid-template-columns:1fr 1fr;gap:34px 20px;}
+  .tl-row{grid-template-columns:1fr;gap:5px;}
+  .tl-where{text-align:left;}
+  .card-meta .when{margin-left:0;width:100%;}
+}
+@media (max-width:520px){
+  .figs{grid-template-columns:1fr;}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;}}
+</style>
+</head>
+<body>
+<!-- ================= NAV ================= -->
+<nav class="nav">
+  <div class="nav-in">
+    <a class="nav-name" href="#top">Isaac M. Morel Lopez</a>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#conferences">Conferences</a>
+      <a href="#background">Background</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<header class="hero" id="top">
+  <div class="page">
+    <div class="eyebrow">Mechanical Engineering &middot; CCNY 2027</div>
+    <h1>Isaac M. Morel&nbsp;Lopez</h1>
+    <div class="role">Design, simulation, and the check that they agree.</div>
+    <p class="lede">Senior mechanical engineering student at the Grove School of Engineering. I take a design from CAD through hand calculation and simulation, then reconcile the two &mdash; across CFD, structural FEA and fatigue, thermal systems, and Arduino-based mechatronics.</p>
+    <div class="cta">
+      <a class="btn btn-solid" href="mailto:isalopez182218@gmail.com">Get in touch</a>
+      <a class="btn btn-ghost" href="#projects">See the work</a>
+    </div>
+  </div>
+</header>
+
+<!-- ================= STATS ================= -->
+<section class="band grey">
+  <div class="page stats">
+    <div class="stat"><b>5</b><span>CFD runs on a validated NACA 2412 mesh</span></div>
+    <div class="stat"><b>2 yr</b><span>NSF- and NOAA-funded subway heat research</span></div>
+    <div class="stat"><b>30</b><span>student employees on the payroll he audited</span></div>
+    <div class="stat"><b>152 lb</b><span>held by a bridge designed to hold 150</span></div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section class="band" id="projects">
+  <div class="page">
+    <div class="sec-head">
+      <h2 class="sec-title">Projects</h2>
+      <p class="sec-sub">Every project below is documented with the numbers that came out of it. Where a simulation was run, there is a hand calculation next to it &mdash; the point of the work was to make the two agree, and to say plainly where they don't.</p>
+    </div>
+
+    <div class="filters" role="group" aria-label="Filter projects">
+      <button class="pill" data-filter="all" aria-pressed="true">All</button>
+      <button class="pill" data-filter="cfd" aria-pressed="false">CFD &amp; Thermal</button>
+      <button class="pill" data-filter="fea" aria-pressed="false">FEA &amp; Structures</button>
+      <button class="pill" data-filter="cad" aria-pressed="false">CAD &amp; Materials</button>
+      <button class="pill" data-filter="mech" aria-pressed="false">Mechatronics</button>
+      <button class="pill" data-filter="research" aria-pressed="false">Research</button>
+    </div>
+
+    <!-- ---- CFD ---- -->
+    <article class="card" data-tags="cfd">
+      <div class="card-meta"><span class="code">ME 43600</span><span>Aero-Thermal-Fluids Laboratory</span><span class="when">Summer 2026 &middot; Individual</span></div>
+      <h3>External-flow CFD study of a NACA 2412 wing section</h3>
+      <p class="thesis">Five RANS simulations of the Cessna 172 wing profile, run at the aircraft's own published flight conditions rather than arbitrary speeds.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Characterize lift and drag on a rigid body in external flow, with convergence, force, pressure, velocity, and turbulence results reported for every run &mdash; on a cloud CFD account capped at ten simulations, so each setup had to be right the first time.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Modeled the section in SolidWorks at c = 0.2 m, then caught an import error &mdash; normalized coordinates had come in at 1 mm chord &mdash; by measuring face area and diagonal, and corrected it with a uniform 200&times; scale.</li>
+            <li>Chose k&ndash;&omega; SST over k&ndash;&epsilon; because the &omega;-equation resolves the near-wall region, which governs adverse pressure gradient and separation onset on an airfoil approaching stall.</li>
+            <li>Set slip conditions on the outer domain walls: an airfoil flies in free air, so the standard no-slip road-surface example does not apply and would grow fictitious boundary layers on the domain boundary.</li>
+            <li>Imposed angle of attack at the inlet so geometry and mesh stayed identical across all five runs.</li>
+            <li>Validated against published two-dimensional NACA 2412 polars, then explained the disagreement instead of hiding it.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4>
+            <p>Drag coefficient fell 21% across the Reynolds sweep (0.01963 &rarr; 0.01553) while lift coefficient stayed flat, so the dimensional forces tracked V&sup2; to within 1% &mdash; lift grew from 3.37 N to 40.71 N for a 3.47&times; speed increase, against a predicted 12.0&times;. Best L/D was 15.2.</p>
+            <p>The simulated lift-curve slope (&asymp;0.013/deg) sits well below the 2-D value (&asymp;0.11/deg). That is not an error: the model is a finite wing of aspect ratio 1 with free tips, and the measured drag rise above &alpha; = 0&deg; matches the induced-drag estimate C<sub>l</sub>&sup2;/&pi;AR to the same order, confirming the three-dimensional reading.</p>
+          </div>
+          <div class="tags"><span class="tag">SimScale</span><span class="tag">SolidWorks</span><span class="tag">RANS k&ndash;&omega; SST</span><span class="tag">Mesh convergence</span><span class="tag">Python</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Run matrix &amp; results</h4>
+            <table class="spec"><tbody>
+              <tr><td>Mesh</td><td>2.8&times;10&#8310; cells</td></tr>
+              <tr><td>Reynolds range</td><td>3.2&times;10&#8309;&ndash;1.1&times;10&#8310;</td></tr>
+              <tr><td>C<sub>d</sub>, stall speed</td><td>0.01963</td></tr>
+              <tr><td>C<sub>d</sub>, V<sub>ne</sub></td><td>0.01553</td></tr>
+              <tr><td>C<sub>l</sub>, cruise</td><td>0.23604</td></tr>
+              <tr><td>C<sub>l</sub>, &alpha; = 10&deg;</td><td>0.35970</td></tr>
+              <tr><td>Best L/D</td><td>15.20</td></tr>
+              <tr><td>L/D at &alpha; = 10&deg;</td><td>4.98</td></tr>
+              <tr><td>Mach at V<sub>ne</sub></td><td>0.24</td></tr>
+            </tbody></table>
+          </div>
+          <figure>
+            <img src="data:image/webp;base64,UklGRlwVAABXRUJQVlA4IFAVAABQ2QCdASroAzMCPmEwl0gkIyKhoFM4yIAMCWdu+CxIMAfgwIRfn6Hd/bFD7OMhD/Xr4Q996hlv/yf9Q9oTPj7uys7J/+t9S/6d/6vuAc9T+x/9j1I/yz+tf9D/L++N6f/9n6gH9V/zPXJegB5cf7XfFL+7PpP6r/flS3wK4AKLdda1N9O18i9gD8++idpM+qfYH/XoG/0ZiEfbql9gxGl3VL7BiNLuqX2DEaXdUvsGI0u6pfYMRpd1S+wYjS7ql9gxGl3VL7BiNLuqX2DEaXdUvsGI0u6pfYMRpd1S+wYjRJF7Euv0iiNx1pMdlGuFXlw3qLCYBVeAQx1zkT1z62xtnthbCIAS/u5ySIId6AkAnKqDNwS/eTLRiwrNYvM+3M+3NHwIy9tVG0VyZczn1NFJEJsBGaVT25n27noeOmJ0n+MIPbRiunLi8z7cmJWU2nQZe7lxec3ndi8z7cz7cz7cz7cz+YjL20YrpKmIF+1pMt8hcXmjWgG7RiunLi8z7cz7cz7cz7cz7cmJWUxvoGL4vdMayuLzQWq/uQlh5y4vM/mTQe2jFdOXF5ll+OxELi842Am9pMpfu9UaCRX8KYJ78U9k/KwsBhB7aMV05cXmfbkxKyoskkksTVLig7I+kJsd9STIzd22GTCjzwStd05cXmfbmfbmfbmfXogpBb42mGHoFxNgdVqFd2tNm4DVlhcuNwSw85cXmfdi5IPZeZ9uTErKbTlyj73ZkDvwkh6Av53sNPS3YSw85cXnVMfjCj7A4vM+3JiVlNqxvoFxeZ9CjK/k7DxBVv5V8TlK9W+/q+MR7QBScdDFsm7pM+3M+3M+3NHwIyLzM6aGYXlyjO2lXnqvSpUcLkGbEonhFcnqlUwVhVEpNa4ZhoM6DVwNQmZOGew4x1Fzp99dHPxjelSIisgbT5R2go6m5n25n28MTH6XvbS613JqFGl1wOh1mi6PJUxAuCGqkxW/yjGKCm2eVAdKbWbyAofHJmUOE+U0ojER0Md2pIhmS2z2Ogp5eLC0ranKf056tdSWKDlPDrms8nLtqIYO7Wg4wCvmxsPtY+6aa+lUrQqtbUvpqaq7PKuAi02WN3atrSSnPwprgwQ8bST5VHtkZJuG1wOi5lIuDFPW3tuz6qIR4HBaCLUBlFgQ4JuJnw9dHhQ8yfXa4UuJgPR7eBAnGWMW/mVT6UgNQBZVg7E6o9Ew2XsyP8AcbYRAEQQ5UY+mMkEnCf93GI1zLWCvNfO288b/JbOswrT/aFci9oBmIqNlzaOv4/nP2e1dKBQC9xSrecuLzPtzPr7x5y4vM+3M9WvxdkYrp0x4jC0q3ZTnWn15n25n1/+1AYvbRkYzV5sIEWWBjYCqEXnWGxiunLi9z0m7pidJu4X/bmfbmfzEZe4IYCP/e9mX/7dwenGXtoxXTlxeZ9uZ9uZ9f9it2L0415z6m8Z2Uz/7cz9nNB7aMV05cXmfbmfbnXVudWVAt2Jzn1N4zaUdcoKlbmi4FoI5PY1ARl7fzBNXXmwpEF/7cz1a/FnIUbLm0aCcZf/tzPujcHotcOsb0MMUGEHtoxXTlxeZ9ec+ppelBLTmA+ilMV05cXmfbmfbmfbmfbmev6Yrdi8mjzOpypfFYzaNBykBGXx5QEZe2jFdPBE5cwGEHtoxXVz5iB07vn9dsBGXurA/wvbRiunLi8z7c6pf6MV0nM2dwgQEf/ISLjulcasV05gPrcGxBNXbPXadDxwv+3M+3OqAIyLzJbe+FVjAKFat5sGI0u6pfYO9uPKa1P23VWMAoVrymwYjS7ql9gxAZ3VL7BiNKiqX2DEaXdUvsGI0u6pfYMRpd1S5QYjS7ql9gxGlQzlgas7/9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9clfloxXTlxeZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ9uZ6le0zKgjL20Yrpy4vM+2dzb6hxzZPQQ3Y/l1t3l0GEla4G0ySZ9uZ9uZ9uZ9uZ9uZ7nX3F5n25n25n25n22SXrf/1Htm1UiB1zHxR6Fx9ymhW2kYpfti0PtzPtzPtzPtzPtzPclUmwo85cXmfbmfbOAxhgcV6ghZO+b6SFeywpx8Euf25f9DrQGZ2D+/uQi4qR8G0KJCZAkgvZTKFlJlVwpywXwy0tGK6cuLzPtzPtzOw/qP/tzPtzPtzPtzPUBqHQ37ZtGqCvQmcxkhX/7cz7cz7cz7cz7ZwAP7+cOT7v+DHzjsPjm50dMWA9X39ec//uxSo/+6WJvBp7zMaoPurIS9BH5CdLCGZBBcJt5OL21sau8ukRaOkNCAT+Pwuwi8iaWFMCTgThFuhEgIZhp8MriiAUYD44eMF+guqJgic6iEmdhedk6ujkEEwdiL2GKL2GG/bt4nOa8ZpISng4xKthj1Hss+zI9rH+/ihZeF9wX+E202wVIEGY6X7dgDs/qwSFe6/HeuvUOA8tdrdT4edyAzKINfPOmjopDcNG9THcI5KbhqY3DUxuGpjcM90SZKIoTNqFwQRKnsUGM2whttrjtXxW4/uvXPaI9yJeuz+XkiUjKl9CYMwAwGzWHAra5iADc/KsqwdLS2upunUJo2j9lhBTGflDVBZCCkdqCGEVZN07VGrjOFtO+mqtAH1Y2cBVjExz1VzyywD2APxAADRlg5plUJaoFHmpf90LhjPKo/kAOJtJaBXCabGFP1aBnmVVWegn2EAQeJ4CFQbqBi7b+akhNBi9a1H+B9YSKUiVDlPwLipPjIyq+hEsiIyp6WNHb3Po8YuzX5q82fVefcaNyE/WY7B1OeYRmweD6qxSsZprBkNRJFwhksXrXd5KfVlBc9DOZEdTGa4wNKa73n2cvFkIGsy54/VSlkprv27Qx9c8BPaQ7oxgA68AbGLKD8T5i/sSPjn79TdK/uk+AABOJSCUfbTlxjGQeokL3+HOzhu3zBSOPCGcde42Jb4nvzrdr+7i+3geUYGBCsgIBs2F0pkvG0wUYRomtkbAmzi4ckiszbVoEDGsgnOVfKLdaKPiGaeL2le3N4Ml5vM1eB3OQDZB9qVhJtHQRygw8crztCMmFKs0aPV7oWKIA7+CXyJXShm0GcT4wUHPf6vByet3cq0b9id/tnybxY9e7C/EY6RECUGM6oD32aMOFa4NgDtuf2eb9MblUSpOoXTqdd64XcrsTtlQZGqtMO2eZdeOrQHeutO8yHHSxHCeBljaQ7fhDciTB9N+praI4wbT6cDEiv4dN/uVL+Kbu+fb2aLRVdwMyb5C5o+4HA8V+9ZSN+wVXYQezOxa2LZKaX7HcR/NbrJXrwBlTFgNysJInmjR85r98SjA8JDxrJavpput5kxF7LwnQMwlVBBwTu3WYnOJcjml/bBBstNQDA5R+EdwIuBQhUaPvnZG8YCwhPThjKpLFKZ4NwD62eTunlTHFujRcIWozINqIpXaRj8fM/DBR9N7UJm6nkS74OhWVG+hXXthojTnhMK6shK/bhWcjeWJDErOS2OI1/H2t0Vgia08IT9mixbsH8uca5c51+puzClh/3YZIMd4mgdjdvgP+31cSGsSscFqBnF/3xB8yk30eH2L9m2qw/SKxQPI3VdaT4uUPK/z6pJn390f9e3lCMFoTBY0Fljdy8mkNQKGnwMqoOZZ1bD5/f1FoSKEFwcSVr2wzBV+24jV6+iGMbn91voHCULkDySjQF5qkyOnU9Y+XP2ZhtoLZyTpd3EuwOHBIwZ6OASSnoBTL3NzWR5RkEEIOe9vbN81wsGwaVh3vKNXVLd1xSDtk7CxdAgvstczaQogLY3TgxE0PQoyGIBdmEqmrkWWqFtgFgBlOMX5fUj0XnWKgVlaA+aS8itFCe+i00CZrw7H4YSm/9Gi/PzZ05XX9XIzk9l2vfv40W57oG5XJO3GR4+Tq5aNzKU12yKMu/h0H8XDkr8738EZ7IiYi1wJW9ZLEolOUmj4si/m0D9uIxozb0S9lofOVMfywSQ43vRDGZaMB18hFJ72oPModIHX9/JL/oD7XVWkud8DqwqZ9F3MdwAkfM6uYIHqB3I/75SzixIm6jKJd060HWcTj9M67wMbzIQ4bNI7bMK2xpK+tmCezd0qbwpNQDo/nQMazfCjWtxMitSQT/sUlexeXIpEi7JxEv4xjCb4/OQXh++BoWqj3mE8Pvi7VCasrfgJ338wC0lrEzSX/kEPnwDt66HF8R/NVOwf5NJdnRin7JsP53/ChH5jk+MRHj4JVl7HHqqg9uv9c1+R5hAmNBpuHVfwDLDMDOenaf7LTRSnAJ7lxPWD9CJrE1Z8n3Won82BqA412FOkP2RIuhe1XuDiJ17U0y5+Y8EX9DNhedHmnGLfwsYd+3S3qpkUyPWhLIfBfsPOlCejFtqAVMIjzakneFz2mUINgLYv7odvA7TVFW8hk2gGuAf4x4QDkWuMYWvKwAdM4qYQs4AjcIdjmU+U+1Crtn3L7lxVN3u4zSiY8YvSiJlvcfDOl+46TG2Fne8dGMrIT2hLYEpRqbBhv5B/MB8GihIAhPDCr5nWxrybcGNgWjdOG2dpfFziy+2I6IaWE22KsVmqs3cGNHDzXlGS7BfcAi6Kn3JaSWyOrDLhrRTYlFWoXeyOTtR49rMXSCPEuFlAQVC6WdNhHPzGsoxhbNW8r81l1gID5BLDtl1WE9KJtht7q1VhQMmeR43lFM8XH9Ftn9F6mG534Nr/J8eq5/2I+6LI8fowLNbsYRir8YfkCuCnk9BKL7a/6OxPZzePxuT85MbQHISCriwTIy3AWCNG9uLwdKmrdYz/5Mvk0EzIeMN8k9Jf+vGkP6MTQEszAy6GsxzlWe3REkg8FN2XtfdpSCV5AAAAACNfV84ab58AjihMFy293csl7idZZQtga/gwwvTsxnUYnNpqRQ6fgOvhzHD2C6YKhsUi7DkU6rpOxj1a0PYyTHtlM/xsxFh/QdXSCUeE0fmbm7Lc0EKnnF0owPomtPl361zutwpBJC3w9i6YGwlyJEG/p7DoQAAU4tVhYB6m5vHc2pBAPkiac68Y3RO4NCYg84yfYUpQQ8KQQJM4VOAVumLqBwpz1dYf7r6Za7UEF2iAABDQ3gAXA/6eCJ+UubUsOXvtojH0pnmQAH2o8m80iLkZ+iXj+fBkrYQbC5O0lPyoNghGHtJgIDoT4CuCN8UyOifVa0JDNTncnSH1pykdKziMqn/LdRPOWNGojp06dOnTpzhxIXzxtYnKfMdpRTJskiLOTpD4AEEYckqf8lztVCmQGBAwIGBAwIGBAwIGBADGy4P4AhtdKK486jkhHEqgFIfoeQjOu+C1EOhPQ8m+eTeEkCZVZxrM6bZqJDfKdbYSrP/UflPkpcmd5GvLpJTBDxNkmeYuRM5npsSpFvK6cQ/XnOlhnUmQCARJkfUAPx+YQQkIaKFakpUZJgOqF0BgI1LJXfbvpGvgnofLznUR0IYNGv/E59OIE/hrOXjXiqqQebcE7eq1Ps6PXtG+ZWihchHBebwZyfs3CSvLTj7wc5RwAAAAACtwiNMagRnAzuqnDVVIAQKX3rel89gd5B3kAAAAAAAAAAAAAAAAAAAAAAAAAAAAc3IINFfcDvikK0Fq06UAAAAAAHGFT2ASeXOCQAAAV38nR9WUb2GC804SlcRbPGLRnUln0NuLnqXWR7WWOsVMNyBTIn9Ba7p3orrf49xEAYEPaLsJcRx+vjlWAbCOn8lfFSJiiMeJouJdVW0gEt8BUvMnuCTEXQa4zWggljKhhdx+5rKgnl6ZZI+YufXv2jxuGcUp9Ke9cnz+o7HXoeIN/y7y9A113fX/AqUjMu40Cz4+pGmkO6a2wYNtP5we9tsYloRNAXbPdkiCxFFVLcW5r8Hike5ZtgvJT2+G7KhW6Wp0wCz5ndiTh8+XC33k2ucv7Tg/Cso560XfHs6Fbmp7cEVk1uuoR7TSjtt9ChYpfZMW2ebhiclRW0O6T+0hDgAAZSzTCy/mSyYbeMPD2cXy/wBTYAAPOJINM+D9chiwZaJzT562UfMWOHgxw9HFK6PXnoBweUXzVCNPKq2He+7aWFm9VfhH3c+bSEijBGLX5pCKflNuWFd4JXrhVjk7k55pfY74ugXoQfaO3b6E/WWOc3F22FEkJgTISMG17+sNsb9WgK4jYgxWAVHj+TlTvqG3Fc9FaZfhPh41EhsHOvumFp+gm/jCHsYXUOO/kZS8BmwQQRdOKxHN0b8cO7YER2Yc8nq5J0lbNRXSc9PbSyGLG/dQ08RWenI03tP5d7Y6L4xfb33Xe2gMoxDQykKYGeaaelLrRnPGwL3LNgjcAAATsAJfIa3Gmp0+xZrnQAAGPXGhfT/RhdQ9ns/u4v+REcFPA7wrsiOVV/v4BB6fb3M6mmmgNeuBq/j9uZj16IehnUH2R5wZN/yWPUqJPzzUDiDPn1/uDU6f+7X/DX1t1a+z/kFb/My+kiNmWOcBhKUTseC1UVFn738sKBptdBVcF0T5htSfXpqLpctorDKXcQH3QVPwY70cGzRJcHUFXWWyTj8NxzHLDE8UrxGjrlGMmZK3QEEl92/DIKmiTqo/M4QQi0xKCTXDq40KXricZnaQmyKqHZokH2/e/nRJXuo3+7Tc09E1zv8LvraDWlcGS+K5lIVeK7M2q2K4VEo4J1OFvQQEbP7qhMvR6kVprz4fWwzfSS1VJQKB1VAHQUECsPZjd2yKSp8i+ZNB2wUv4x+mTS/z4vIaT7z/fA+qkB5C9SQopbg7REL25KAFeXl9PPdWsNPJOeUpEGPIGsv5u8wSThr0qW2GsI7W4gGSg53PNeBavbLg/RSP6+MnvxI21Bi9RHk5LtamWGJWGlhjspEd29UgN0fFTqpRNms6el5ofTMiSulrFJdbvGHSgjZ6krmVG7iJazKKiQJVOCM8MhecAnPsDRoR46cstGX/GwToqT/zBoyss278kz5AULGF3LCBrffcDMiCE7hp7awvzIfuY8LSpnBuwgtR92gurYTcCpTAkipwo847SDsBiDeqj467v8/H3ruMRDJ8aOi3kW/k/EfAWQw6lmuBiagaAr/ioYE3SJyrbgea+445a1nwTfvfwxTzWCKox6pqRgdBZAKmedhuoAAh1XV3SxOQAAehL9a9KRIrb+OPWvEbg3QmzJ+UAAAABcRf936A3Mq1l3mVS9WviBibFhAAAAAAA==" alt="Velocity magnitude contour around the NACA 2412 airfoil at cruise">
+            <figcaption>Velocity magnitude at cruise (62.8 m/s, &alpha; = 0&deg;).</figcaption>
+          </figure>
+          <div class="figs">
+            <figure><img src="data:image/webp;base64,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" alt="Velocity contour at 10 degrees angle of attack"><figcaption>&alpha; = 10&deg; &mdash; wake thickens.</figcaption></figure>
+            <figure><img src="data:image/webp;base64,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" alt="Static pressure field at cruise"><figcaption>Static pressure, cruise.</figcaption></figure>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- BIKE ---- -->
+    <article class="card" data-tags="fea cad">
+      <div class="card-meta"><span class="code">ME 37100</span><span>Computer-Aided Design</span><span class="when">Spring 2026 &middot; Individual</span></div>
+      <h3>Complete bicycle: design and structural validation for a 100 kg rider</h3>
+      <p class="thesis">A full bicycle modeled in SolidWorks, with every load-bearing part checked twice &mdash; once by hand, once by FEA &mdash; and the two results reconciled.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Can a junior engineer, using only undergraduate beam theory, FEA, and materials selection, deliver a bicycle that safely carries a 100 kg rider? Success meant FoS &ge; 2 against yield on every static study, a buckling load factor &ge; 4 on the fork, and FoS &gt; 1 against ultimate strength for the rim under impact.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Modeled frame, fork, handlebar, saddle and seatpost, drivetrain, and wheels on a real hardtail geometry (73&deg; head tube, 560 mm top tube, 980 mm wheelbase), then assembled them to confirm integration.</li>
+            <li>Redesigned the frame in Ti-6Al-4V STA for fatigue performance and corrosion immunity, keeping standard alloys elsewhere.</li>
+            <li>Wrote a 2-D plane-frame stiffness-matrix solver in MATLAB and ran it against the SolidWorks beam-element results to validate the FEA setup independently.</li>
+            <li>Matched the study type to the physics: static for most parts, Euler buckling for the compression-dominated fork, and a 150 mm drop test for the wheel, since curb strike is what actually sizes an aluminum rim.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4><p>Every component cleared its target. The binding case was the wheel under impact at FoS &asymp; 1.08 against ultimate tensile strength; everything else landed comfortably above the FoS &ge; 2 yield target. Hand-calculation and FEA differences stayed inside the expected 2-D-versus-3-D gap, which confirmed both the load paths and the simulation setup.</p></div>
+          <div class="tags"><span class="tag">SolidWorks 2026</span><span class="tag">SolidWorks Simulation</span><span class="tag">MATLAB</span><span class="tag">Buckling &amp; drop test</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Targets &amp; outcomes</h4>
+            <table class="spec"><tbody>
+              <tr><td>Design rider mass</td><td>100 kg</td></tr>
+              <tr><td>Frame material</td><td>Ti-6Al-4V STA</td></tr>
+              <tr><td>Frame yield strength</td><td>827 MPa</td></tr>
+              <tr><td>Static FoS target</td><td>&ge; 2.0</td></tr>
+              <tr><td>Fork buckling target</td><td>BLF &ge; 4</td></tr>
+              <tr><td>Wheel drop height</td><td>150 mm</td></tr>
+              <tr><td>Worst case (rim)</td><td>FoS 1.08</td></tr>
+            </tbody></table>
+          </div>
+          <figure>
+            <img src="data:image/webp;base64,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" alt="MATLAB plot of the six-element beam model of the bicycle frame">
+            <figcaption>The six-element plane-frame model written in MATLAB, used as the independent check on the SolidWorks beam results.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- JIB CRANE ---- -->
+    <article class="card" data-tags="fea">
+      <div class="card-meta"><span class="code">ME 47200</span><span>Mechanical Systems Design</span><span class="when">Spring 2026 &middot; Team of 2</span></div>
+      <h3>Cantilevered jib crane: beam, weld, and bolted moment connection</h3>
+      <p class="thesis">A 50 kN wall-mounted jib designed for ten years of service &mdash; statically indeterminate, so the redundant reaction had to be recovered before anything could be sized.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Size a cable-supported cantilever jib to lift 50 kN through 25 fully loaded cycles a day for ten years (91,250 cycles) at a factor of safety of 1.5 against both yielding and fatigue, then design the weld and bolt group that carries it into the wall.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Recognized the structure as statically indeterminate to degree 1, took the cable tension as the redundant, and solved it by Castigliano superposition &mdash; giving T = 87.5 kN, larger than the load itself, which forces the wall to anchor the beam <em>down</em> at 37.5 kN.</li>
+            <li>Placed the load at the free end as the deliberate worst case, then found the critical section at the cable rather than at the wall.</li>
+            <li>Ran the fatigue check in the finite-life regime with Marin factors, deriving the size factor through the equivalent-diameter approach for a non-rotating I-beam in bending.</li>
+            <li>Checked the weld for fatigue as well as yield &mdash; a 5 mm fillet passes statically but fails fatigue at n = 1.11, so the specification went to 8 mm.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4><p>A UB 356 &times; 171 &times; 51 section clears both checks (n<sub>y</sub> = 1.67 static, n<sub>f</sub> = 1.76 Goodman). Hand calculation and FEM agreed to 0.5% at the critical section on a mesh converged to 1.5%. A deliberate sabotage run with the cable removed produced &sigma;<sub>VM</sub> &asymp; 500 MPa and 200 mm of tip deflection, confirming the cable is doing exactly what the analysis said.</p></div>
+          <div class="tags"><span class="tag">Shigley method</span><span class="tag">Castigliano</span><span class="tag">Goodman fatigue</span><span class="tag">SolidWorks Simulation</span><span class="tag">LaTeX</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Design summary</h4>
+            <table class="spec"><tbody>
+              <tr><td>Load</td><td>50 kN</td></tr>
+              <tr><td>Material</td><td>AISI 1020 HR</td></tr>
+              <tr><td>Design life</td><td>91,250 cycles</td></tr>
+              <tr><td>Cable tension</td><td>87.5 kN</td></tr>
+              <tr><td>Critical moment</td><td>100 kN&middot;m</td></tr>
+              <tr><td>Section</td><td>UB 356&times;171&times;51</td></tr>
+              <tr><td>Static FoS</td><td>1.67</td></tr>
+              <tr><td>Fatigue FoS</td><td>1.76</td></tr>
+              <tr><td>Fillet weld</td><td>8 mm</td></tr>
+              <tr><td>Bolts</td><td>4 &times; M20 Gr 8.8</td></tr>
+              <tr><td>Hand calc vs FEM</td><td>0.5%</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- TURBINE ---- -->
+    <article class="card" data-tags="cfd">
+      <div class="card-meta"><span class="code">ME 43000</span><span>Thermal Systems Analysis &amp; Design</span><span class="when">Fall 2025 &middot; Individual</span></div>
+      <h3>Single-stage impulse turbine for a 1600 psi steam cycle</h3>
+      <p class="thesis">A zero-reaction control stage designed from Rankine cycle conditions down to blade height, then swept across nozzle angle to prove the design point was the right one.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Design the high-pressure control stage of a steam turbine for throttle conditions of 1600 psi and 1000 &deg;F at 345.7 lbm/s, extracting a 26 Btu/lbm isentropic enthalpy drop, with stage loading &psi; &lt; 3 and stage efficiency at or above 90%.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Worked a 15-step mean-line design: spouting velocity from the enthalpy drop, blade speed from the blade-speed ratio, velocity triangles at nozzle and rotor exit, then flow areas, blade height, chord, spacing, and blade count.</li>
+            <li>Fixed rotational speed at 3600 rpm because the rotor couples directly to a two-pole 60 Hz generator &mdash; which, with the target blade speed, sets the mean radius rather than leaving it free.</li>
+            <li>Sized blade spacing with the Zweifel criterion and carried a blade friction factor through, so the efficiency figure is an estimate rather than an ideal.</li>
+            <li>Swept nozzle outlet angle from 8&deg; to 15&deg; to map the loading-versus-efficiency trade and confirm the chosen 10.5&deg; sits in the optimal band.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4><p>The design point met every target, with a mean radius of about 1.18 ft (28.4 in mean diameter, reasonable for a high-pressure first stage) and roughly 0.8 in of blade height at mid-span. The parametric sweep showed why: below 8&deg; the loading climbs toward the stress limit, above 12&deg; the efficiency falls off.</p></div>
+          <div class="tags"><span class="tag">NIST steam tables</span><span class="tag">Velocity triangles</span><span class="tag">Zweifel criterion</span><span class="tag">MATLAB</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Stage design point</h4>
+            <table class="spec"><tbody>
+              <tr><td>Inlet pressure</td><td>1600 psi</td></tr>
+              <tr><td>Inlet temperature</td><td>1000 &deg;F</td></tr>
+              <tr><td>Mass flow</td><td>345.7 lbm/s</td></tr>
+              <tr><td>Enthalpy drop</td><td>26 Btu/lbm</td></tr>
+              <tr><td>Spouting velocity</td><td>&asymp; 1140 ft/s</td></tr>
+              <tr><td>U/V&#8320;</td><td>0.39</td></tr>
+              <tr><td>Rotational speed</td><td>3600 rpm</td></tr>
+              <tr><td>Mean radius</td><td>1.18 ft</td></tr>
+              <tr><td>Nozzle angle &alpha;&#8322;</td><td>10.5&deg;</td></tr>
+              <tr><td>Stage efficiency</td><td>&gt; 90%</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- SUBWAY ---- -->
+    <article class="card" data-tags="research">
+      <div class="card-meta"><span class="code">CUNY&ndash;MTA</span><span>Research Intern, NYC College of Technology</span><span class="when">Jun 2024 &ndash; Jun 2025</span></div>
+      <h3>Monitoring heat in the New York City subway system</h3>
+      <p class="thesis">A year of field measurement across four boroughs, turned into a data pipeline and a finding that air conditioning helps far less than riders assume.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Heat waves are intensifying, and underground transit is among the most exposed infrastructure in the city &mdash; but nobody had characterized how much hotter platforms actually get, or whether stations with cooling systems were meaningfully better for riders and transit workers.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Collected temperature and relative humidity with sensors and thermal infrared cameras across underground stations in the Bronx, Brooklyn, Manhattan, and Queens, over multiple seasons.</li>
+            <li>Owned the data pipeline: cleaning, time alignment across stations and collection dates, and visualization in Python and MATLAB.</li>
+            <li>Learned QGIS to build spatial maps of the findings, so the pattern could be read borough by borough instead of station by station.</li>
+            <li>Coordinated line coverage and thermal-camera logistics with the student team so collection windows stayed comparable between rounds &mdash; the constraint that made the seasonal comparison valid.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4>
+            <p>Platforms run consistently hotter and more humid than the surface. Queens and Brooklyn had the hottest platforms; the Bronx was coolest but most humid; Manhattan managed both high heat and high humidity despite having air conditioning. Cooled stations averaged 87.1 &deg;F in summer against 95.11 &deg;F elsewhere &mdash; real, but a smaller gap than the presence of AC suggests. Thermal imagery also showed structural beams transmitting heat down onto platforms.</p>
+            <p>Presented at the American Geophysical Union meeting in Washington, D.C. and the American Meteorological Society meeting in New Orleans.</p>
+          </div>
+          <div class="tags"><span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">QGIS</span><span class="tag">Thermal IR imaging</span><span class="tag">Field instrumentation</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Findings</h4>
+            <table class="spec"><tbody>
+              <tr><td>Boroughs surveyed</td><td>4</td></tr>
+              <tr><td>Fall heat index</td><td>80.18 &deg;F</td></tr>
+              <tr><td>Summer heat index</td><td>93.11 &deg;F</td></tr>
+              <tr><td>Summer, with AC</td><td>87.1 &deg;F</td></tr>
+              <tr><td>Summer, without</td><td>95.11 &deg;F</td></tr>
+              <tr><td>Hottest platforms</td><td>Queens, Brooklyn</td></tr>
+              <tr><td>Most humid</td><td>Bronx</td></tr>
+            </tbody></table>
+          </div>
+          <div class="panel"><h4>Funding</h4>
+            <table class="spec"><tbody>
+              <tr><td>NOAA CESSRST</td><td>NA16SEC4810008</td></tr>
+              <tr><td>NSF REU</td><td>AGS-2150432</td></tr>
+              <tr><td>NSF IUSE</td><td>ICER-2023174</td></tr>
+              <tr><td>Pinkerton Foundation</td><td>HIRES</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- BULLDOZER ---- -->
+    <article class="card" data-tags="mech cad">
+      <div class="card-meta"><span class="code">Bulldozer MK I</span><span>BMCC Engineering Internship</span><span class="when">Summer 2023 &middot; Team of 3</span></div>
+      <h3>Fully 3D-printed autonomous robot with line following and ball collection</h3>
+      <p class="thesis">A ground-up build: chassis designed in Fusion 360 and printed in PLA, sensors and servos driven by an Arduino UNO, delivered inside a fixed parts budget.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Design and build an autonomous robot that follows a black tape line, collects ping-pong balls along the route, and dumps them at the end &mdash; within imposed limits on dimensions and mode of operation, and with cost and safety treated as design constraints.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Designed the chassis in Fusion 360 around the components it had to carry &mdash; battery pack, breadboard, servos, sensor mounts, ball hopper &mdash; then printed the whole structure in PLA.</li>
+            <li>Wired IR obstacle-avoidance sensors and an IR break-beam sensor to sequence operation: the sensors decide when the robot turns, when it grabs, and when it releases.</li>
+            <li>Programmed the Arduino UNO as a set of functions inside a continuous loop, so line following, collection, and dumping run as one uninterrupted routine.</li>
+            <li>Iterated on the first prototype: the original chassis sat too high off the ground to pick up a ball, so the team designed and attached a front ramp.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4><p>The robot ran the course autonomously &mdash; following the tape, curving where needed, collecting balls, and dumping them at the finish. The build came in around $185 in parts. The team named PID control for the line-following loop as the next step, since bang-bang behavior was the limit on precision.</p></div>
+          <div class="tags"><span class="tag">Fusion 360</span><span class="tag">FDM 3D printing</span><span class="tag">Arduino UNO</span><span class="tag">C/C++</span><span class="tag">IR sensors</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Build sheet</h4>
+            <table class="spec"><tbody>
+              <tr><td>Controller</td><td>Arduino UNO REV3</td></tr>
+              <tr><td>Drive servos</td><td>2 &times; MG995 360&deg;</td></tr>
+              <tr><td>Actuator servos</td><td>MG995, SG90</td></tr>
+              <tr><td>Sensing</td><td>IR &times; 2, break-beam</td></tr>
+              <tr><td>Power</td><td>8&times;AA, 12 V</td></tr>
+              <tr><td>Structure</td><td>PLA, printed in-house</td></tr>
+              <tr><td>Parts cost</td><td>&asymp; $185</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- ARM ---- -->
+    <article class="card" data-tags="mech">
+      <div class="card-meta"><span class="code">ESC 111</span><span>Elements of Engineering Design, BMCC</span><span class="when">Fall 2023 &middot; Team of 4</span></div>
+      <h3>Six-degree-of-freedom robotic arm: pick-and-place and coordinate mapping</h3>
+      <p class="thesis">Scripting a six-servo arm to move a cube between defined positions, then deriving the mapping between the arm's own coordinates and physical space.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Drive a six-servo robotic arm to pick up a cube and place it at two different positions from a calibrated zero pose. Separately, establish the relationship between robot coordinates and physical coordinates, and validate the formula relating Z to X and Y.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Calibrated all six servos to a zero reference pose, then built the motion script two ways &mdash; teaching positions through the manual controls and saving the result, and writing servo values directly in code &mdash; and compared them.</li>
+            <li>Wrapped the sequence in a macro loop so the pick-and-place cycle could repeat a specified number of times.</li>
+            <li>Simulated the intersection of the arm's work envelope with the Oxy plane and with a vertical plane at zero elevation angle, and checked the derived Z(X, Y) relationship against those intersections.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4><p>The task completed reliably with the manually taught script. The real lesson was redundancy: the same end position is reachable through more than one combination of joint angles, so precision came down to which combination you chose, not to the code being complicated.</p></div>
+          <div class="tags"><span class="tag">6-DOF arm</span><span class="tag">Macro scripting</span><span class="tag">Servo calibration</span><span class="tag">Kinematics</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Scope</h4>
+            <table class="spec"><tbody>
+              <tr><td>Degrees of freedom</td><td>6</td></tr>
+              <tr><td>Task</td><td>Pick &amp; place, 2 targets</td></tr>
+              <tr><td>Methods compared</td><td>Taught vs coded</td></tr>
+              <tr><td>Coordinate work</td><td>Robot &harr; physical</td></tr>
+              <tr><td>Validation</td><td>Envelope &cap; Oxy, XZ</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- BRIDGE ---- -->
+    <article class="card" data-tags="fea">
+      <div class="card-meta"><span class="code">ESC 111</span><span>Elements of Engineering Design, BMCC</span><span class="when">Fall 2023 &middot; Team of 6</span></div>
+      <h3>Tongue-depressor bridge: SAP2000 truss analysis, then a real load test</h3>
+      <p class="thesis">Analysis first, construction second &mdash; and the bridge held 152 lb against a 150 lb requirement, with no member failures.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Design and build a bridge from tongue depressors, nuts, and bolts that carries a 150 lb load without any structural member breaking. The design had to be justified by analysis before a single stick was glued.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Built the truss as individual frames in SAP2000 and read out the axial force in every member, using sign to separate tension from compression.</li>
+            <li>Studied how force distribution changes with member angle at constant applied load, and exploited geometric and load symmetry so the whole structure did not have to be scrutinized joint by joint.</li>
+            <li>Tested a single stick to establish its allowable force, then worked backward from the member forces to the number of sticks each member needed.</li>
+            <li>Carried the analysis through progressive stages &mdash; one-, two-, and three-bay trusses first &mdash; comparing theoretical against experimental forces before committing to the final geometry.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4><p>Members 1 and 11&ndash;15 were identified as the compression members, a single stick was rated at 16.96 lb, and the analysis called for 117 sticks. Only one change was needed between analysis and built structure. Under test it carried 152 lb with no member failures, which made SAP2000's prediction as much the result as the bridge was.</p></div>
+          <div class="tags"><span class="tag">SAP2000</span><span class="tag">Truss analysis</span><span class="tag">Method of joints</span><span class="tag">Physical load testing</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Test record</h4>
+            <table class="spec"><tbody>
+              <tr><td>Design load</td><td>150 lb</td></tr>
+              <tr><td>Load carried</td><td>152 lb</td></tr>
+              <tr><td>Member failures</td><td>0</td></tr>
+              <tr><td>Single-stick capacity</td><td>16.96 lb</td></tr>
+              <tr><td>Sticks required</td><td>117</td></tr>
+              <tr><td>Compression members</td><td>1, 11&ndash;15</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- MATERIALS ---- -->
+    <article class="card" data-tags="cad">
+      <div class="card-meta"><span class="code">ME 46100</span><span>Engineering Materials</span><span class="when">Spring 2026 &middot; Team of 3</span></div>
+      <h3>Materials selection for bicycle frames: why four material classes coexist</h3>
+      <p class="thesis">Most structural applications settle on one material class. The bicycle industry runs four at once &mdash; this project used Ashby indices to explain why that segmentation is rational.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>A road frame sees peak bottom-bracket loads above 1,500 N and millions of fatigue cycles, while the designer minimizes mass, controls compliance, and keeps cost accessible. No single material wins on every axis, so the question is not "which is best" but "which is best for which segment."</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Characterized the loading environment member by member &mdash; axial in seat and down tubes, bending in the top and down tubes, torsion in the rear triangle, cyclic fatigue at every welded or bonded junction.</li>
+            <li>Traced each material's macroscopic properties to its microstructure and crystal structure, then examined how processing reshapes that microstructure.</li>
+            <li>Applied Ashby performance indices (E/&rho; for axial stiffness, E<sup>1/2</sup>/&rho; for bending) rather than comparing raw property values.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4><p>The index ranking reproduces the market. Steel is the only class with a true endurance limit and owns touring and custom builds; aluminum wins stiffness per dollar and owns the mid-range; titanium is corrosion-immune and long-lived at roughly 30&times; the tubing cost, so it stays premium; CFRP has the best specific stiffness but carries barely-visible impact damage and poor repairability, so it stays in racing.</p></div>
+          <div class="tags"><span class="tag">Ashby selection</span><span class="tag">Microstructure analysis</span><span class="tag">Fatigue &amp; fracture</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Candidates compared</h4>
+            <table class="spec"><tbody>
+              <tr><td>4130 CrMo steel</td><td>&sigma;<sub>e</sub> &asymp; 380 MPa</td></tr>
+              <tr><td>Al 6061-T6</td><td>E 69 GPa</td></tr>
+              <tr><td>Al 7005-T6</td><td>&sigma;<sub>y</sub> 290 MPa</td></tr>
+              <tr><td>Ti-3Al-2.5V</td><td>&sigma;<sub>y</sub> 483 MPa</td></tr>
+              <tr><td>CFRP T700</td><td>&rho; 1.60 g/cm&sup3;</td></tr>
+              <tr><td>Frame mass range</td><td>0.8&ndash;4.5 kg</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <!-- ---- HOUSE ---- -->
+    <article class="card" data-tags="cad research">
+      <div class="card-meta"><span class="code">CY-PASS</span><span>BMCC Engineering Internship</span><span class="when">May &ndash; Aug 2023</span></div>
+      <h3>Residential structural design and material cost analysis</h3>
+      <p class="thesis">A first structural design done end to end: load path, member sizing in industry software, and a full material budget for a 30 &times; 28 ft house.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>Problem</h4><p>Take a residential structure from load definition through member sizing to a costed bill of materials, working under real construction codes rather than textbook idealizations.</p></div>
+          <div class="blk"><h4>Approach</h4><ul>
+            <li>Worked through dead, live, dynamic, and wind loads in PSF and PLF, separating point loads on columns from area loads on joists and beams, and traced the load path floor &rarr; beams &rarr; girders &rarr; columns &rarr; foundation &rarr; soil.</li>
+            <li>Sized members in WoodWorks, then moved to Sizer for the full floor plan &mdash; and compared the two tools directly.</li>
+            <li>Designed beams, columns, joists, walls, and stairs against AASHTO, IBC, and ACI provisions.</li>
+            <li>Built the cost analysis from the design, and stated its limit plainly: materials only, no labor.</li>
+          </ul></div>
+          <div class="blk"><h4>Result</h4><p>A complete 30 &times; 28 ft structural design with a $98,766 material budget, broken down by member type &mdash; columns dominated at $46,400, roughly three times the beam cost. This was also the project that moved him from civil toward mechanical.</p></div>
+          <div class="tags"><span class="tag">WoodWorks</span><span class="tag">Sizer</span><span class="tag">AASHTO / IBC / ACI</span><span class="tag">Cost estimation</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Cost breakdown</h4>
+            <table class="spec"><tbody>
+              <tr><td>Footprint</td><td>30 &times; 28 ft</td></tr>
+              <tr><td>Columns</td><td>$46,400</td></tr>
+              <tr><td>Walls</td><td>$24,432</td></tr>
+              <tr><td>Beams</td><td>$16,300</td></tr>
+              <tr><td>Joists</td><td>$11,634</td></tr>
+              <tr><td><strong>Total materials</strong></td><td><strong>$98,766</strong></td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= LEADERSHIP ================= -->
+<section class="band grey" id="leadership">
+  <div class="page">
+    <div class="sec-head">
+      <h2 class="sec-title">Leadership</h2>
+      <p class="sec-sub">The IMPACT work is engineering of a different kind: a system with 25&ndash;30 people in it, a weekly deadline that cannot slip, and a failure mode measured in someone not getting paid.</p>
+    </div>
+    <article class="card">
+      <div class="card-meta"><span class="code">IMPACT</span><span>Mentoring Program, BMCC</span><span class="when">Jan 2024 &ndash; Jan 2026</span></div>
+      <h3>Supervising mentor, timekeeper, and HR coordinator</h3>
+      <p class="thesis">Promoted from peer mentor into the role that keeps the program running &mdash; payroll accuracy, onboarding compliance, and the mentors themselves.</p>
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>The system he owned</h4><ul>
+            <li>Reviewed and audited weekly timesheets for 25&ndash;30 student employees, catching errors before they reached payroll &mdash; across two and a half years of week-by-week records.</li>
+            <li>Ran onboarding end to end, including the hardest case: F-1 international students without a Social Security Number, walked step by step through ISSO work authorization, the SSA appointment, and final employment verification.</li>
+            <li>Served as the liaison between mentors, program staff, and college administration &mdash; the first point of contact when something in a mentor's role went wrong.</li>
+            <li>Built the tracking systems and operational reports the program ran on, and wrote the guide new mentors are onboarded with.</li>
+          </ul></div>
+          <div class="blk"><h4>How he led</h4><p>His stated philosophy is clarity, structure, and empathy, and it shows in how he set expectations with his circle: deadlines exist for a reason, everyone is a gear in the same system, decide for yourself what you share with mentees, come to me first, and tell me what I could do better. That last one was not decoration &mdash; he asked his mentors for feedback on his own performance, in writing, in the first session.</p></div>
+          <div class="blk"><h4>Mentoring, one student at a time</h4><p>Alongside the operations he carried his own mentees: rebuilding a student's next-semester schedule after a bad advisement path that would have cost him nearly a year; working through the financial case for summer classes with another, scholarships and part-time work included; taking a call from a third during finals week when meeting in person was impossible.</p></div>
+          <div class="tags"><span class="tag">Payroll audit</span><span class="tag">HR compliance</span><span class="tag">Onboarding</span><span class="tag">Excel</span><span class="tag">Bilingual EN/ES</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Scope</h4>
+            <table class="spec"><tbody>
+              <tr><td>Tenure</td><td>2 years</td></tr>
+              <tr><td>Employees on payroll</td><td>25&ndash;30</td></tr>
+              <tr><td>Payroll cycle</td><td>Weekly</td></tr>
+              <tr><td>Timekeeping records</td><td>50+ weeks</td></tr>
+              <tr><td>Mentors onboarded</td><td>10+</td></tr>
+              <tr><td>Compliance training</td><td>ESPARC &middot; WVP</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ================= CONFERENCES ================= -->
+<section class="band" id="conferences">
+  <div class="page">
+    <div class="sec-head">
+      <h2 class="sec-title">Conferences</h2>
+      <p class="sec-sub">All from the CUNY&ndash;MTA subway heat project, presented as posters and translated from raw field data into something an audience of scientists could read in ninety seconds.</p>
+    </div>
+    <div class="tl">
+      <div class="tl-row"><div class="tl-when">August 2024</div><div class="tl-what">NOAA CESSRST / CREST Symposium<span>Summer Bridge research presentation</span></div><div class="tl-where">New York, NY</div></div>
+      <div class="tl-row"><div class="tl-when">December 2024</div><div class="tl-what">American Geophysical Union Annual Meeting<span>Poster: Heating Monitoring in the New York Subway System</span></div><div class="tl-where">Washington, D.C.</div></div>
+      <div class="tl-row"><div class="tl-when">January 2025</div><div class="tl-what">American Meteorological Society Annual Meeting<span>Poster presentation, subway thermal environment</span></div><div class="tl-where">New Orleans, LA</div></div>
+      <div class="tl-row"><div class="tl-when">Spring 2025</div><div class="tl-what">CUNY&ndash;MTA program research showcase<span>Lead author, Queens line poster</span></div><div class="tl-where">New York, NY</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BACKGROUND ================= -->
+<section class="band grey" id="background">
+  <div class="page">
+    <div class="sec-head">
+      <h2 class="sec-title">Background</h2>
+    </div>
+    <div class="two">
+      <div class="card" style="margin-bottom:0;">
+        <h3 style="font-size:22px;margin-bottom:20px;">Software &amp; methods</h3>
+        <dl style="margin:0;">
+          <div class="srow"><dt>CAD</dt><dd>Fusion 360 (advanced), SolidWorks, AutoCAD</dd></div>
+          <div class="srow"><dt>Simulation</dt><dd>SolidWorks Simulation (static, buckling, drop test), SimScale CFD, SAP2000</dd></div>
+          <div class="srow"><dt>Computation</dt><dd>MATLAB, Python, C/C++</dd></div>
+          <div class="srow"><dt>Methods</dt><dd>Finite element analysis, mesh convergence, Goodman fatigue, Castigliano, Ashby selection, uncertainty analysis</dd></div>
+          <div class="srow"><dt>Hardware</dt><dd>Arduino, servo &amp; sensor integration, FDM 3D printing, thermal IR imaging</dd></div>
+          <div class="srow"><dt>Data</dt><dd>Excel (advanced), QGIS, LaTeX, technical reporting</dd></div>
+          <div class="srow"><dt>Languages</dt><dd>English, Spanish (native)</dd></div>
+        </dl>
+      </div>
+      <div class="card" style="margin-bottom:0;">
+        <h3 style="font-size:22px;margin-bottom:20px;">Education</h3>
+        <div class="edu">
+          <b>The City College of New York</b>
+          <span>B.E. Mechanical Engineering, Grove School of Engineering</span>
+          <em>Expected June 2027 &middot; Accelerated Master's (4+1) track</em>
+        </div>
+        <div class="edu">
+          <b>Borough of Manhattan Community College</b>
+          <span>A.S. Engineering Science</span>
+          <em>Fall 2024 &middot; GPA 3.75</em>
+        </div>
+        <div class="chips">
+          <span>Heat Transfer</span><span>Fluid Mechanics</span><span>Thermodynamics</span>
+          <span>Finite Element Analysis</span><span>Mechanical Systems Design</span>
+          <span>Materials Science</span><span>Mechanics of Materials</span>
+          <span>Mechatronics</span><span>Nuclear Reactor Design &amp; Safety</span>
+          <span>Aero-Thermal-Fluids Lab</span><span>Computer-Aided Design</span>
+        </div>
+        <p style="font-size:15px;color:var(--text-2);margin-top:20px;">Focus for graduate study: thermal-fluid and nuclear energy systems, with FEA and materials science as the computational tools.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot">
+    <span class="who">Isaac M. Morel Lopez</span>
+    <a href="mailto:isalopez182218@gmail.com">isalopez182218@gmail.com</a>
+    <a href="tel:+19295880333">(929) 588-0333</a>
+    <a href="https://www.linkedin.com/in/isaac-morel-25551a249/">LinkedIn</a>
+    <span class="rights">New York, NY</span>
+  </div>
+</footer>
+
+<script>
+/* Filter buttons: show only cards whose data-tags contains the chosen tag. */
+(function(){
+  var pills  = Array.prototype.slice.call(document.querySelectorAll('.pill'));
+  var cards  = Array.prototype.slice.call(document.querySelectorAll('#projects .card'));
+  pills.forEach(function(pill){
+    pill.addEventListener('click', function(){
+      var f = pill.getAttribute('data-filter');
+      pills.forEach(function(p){ p.setAttribute('aria-pressed', String(p === pill)); });
+      cards.forEach(function(c){
+        var tags = (c.getAttribute('data-tags') || '').split(/\s+/);
+        c.hidden = !(f === 'all' || tags.indexOf(f) !== -1);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
