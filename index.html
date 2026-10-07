@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Isaac M. Morel Lopez — Mechanical Engineering Portfolio</title>
-<meta name="description" content="Mechanical engineering portfolio: CFD, structural FEA and fatigue design, thermal systems, mechatronics, and NSF-funded research on heat in the NYC subway. CCNY 2027.">
+<meta name="description" content="Mechanical engineering portfolio: CFD, structural FEA and fatigue design, thermal systems, mechatronics, and peer-reviewed published research on heat in the NYC subway. CCNY 2027.">
 <meta name="author" content="Isaac M. Morel Lopez">
 
 <link rel="canonical" href="https://isalopez182218-boop.github.io/Portfolio-/">
@@ -221,6 +221,19 @@ img{max-width:100%;}
   background:var(--bg-alt);color:var(--text-2);
 }
 
+/* ============================================================
+   PUBLICATIONS
+   ============================================================ */
+.authors{
+  font-size:15px;line-height:1.6;color:var(--text-2);margin-top:14px;
+  letter-spacing:-.01em;
+}
+.authors strong{color:var(--text);font-weight:600;}
+.pub-links{
+  display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:30px;
+}
+.pub-doi{font-size:13px;color:var(--text-3);letter-spacing:-.005em;}
+
 figure{margin:16px 0 0;}
 figure img{display:block;width:100%;border-radius:var(--radius-sm);background:#fff;}
 figcaption{font-size:12.5px;line-height:1.45;color:var(--text-3);margin-top:9px;}
@@ -345,6 +358,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
     <div class="nav-links">
       <a href="#projects">Projects</a>
       <a href="#leadership">Leadership</a>
+      <a href="#publications">Publications</a>
       <a href="#conferences">Conferences</a>
       <a href="#background">Background</a>
     </div>
@@ -357,7 +371,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
     <div class="eyebrow">Mechanical Engineering &middot; CCNY 2027</div>
     <h1>Isaac M. Morel&nbsp;Lopez</h1>
     <div class="role">Design, simulation, and the check that they agree.</div>
-    <p class="lede">Senior mechanical engineering student at the Grove School of Engineering. I take a design from CAD through hand calculation and simulation, then reconcile the two &mdash; across CFD, structural FEA and fatigue, thermal systems, and Arduino-based mechatronics.</p>
+    <p class="lede">Senior mechanical engineering student at the Grove School of Engineering. I take a design from CAD through hand calculation and simulation, then reconcile the two, across CFD, structural FEA and fatigue, thermal systems, and Arduino-based mechatronics.</p>
     <div class="cta">
       <a class="btn btn-solid" href="mailto:isalopez182218@gmail.com">Get in touch</a>
       <a class="btn btn-ghost" href="#projects">See the work</a>
@@ -370,7 +384,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
   <div class="page stats">
     <div class="stat"><b>5</b><span>CFD runs on a validated NACA 2412 mesh</span></div>
     <div class="stat"><b>2 yr</b><span>NSF- and NOAA-funded subway heat research</span></div>
-    <div class="stat"><b>30</b><span>student employees on the payroll he audited</span></div>
+    <div class="stat"><b>30</b><span>student employees on the payroll I audited</span></div>
     <div class="stat"><b>152 lb</b><span>held by a bridge designed to hold 150</span></div>
   </div>
 </section>
@@ -380,7 +394,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
   <div class="page">
     <div class="sec-head">
       <h2 class="sec-title">Projects</h2>
-      <p class="sec-sub">Every project below is documented with the numbers that came out of it. Where a simulation was run, there is a hand calculation next to it &mdash; the point of the work was to make the two agree, and to say plainly where they don't.</p>
+      <p class="sec-sub">Every project below is documented with the numbers that came out of it. Where a simulation was run, there is a hand calculation next to it. The point of the work was to make the two agree, and to say plainly where they don't.</p>
     </div>
 
     <div class="filters" role="group" aria-label="Filter projects">
@@ -399,16 +413,16 @@ section[id], .gallery{ scroll-margin-top:68px; }
       <p class="thesis">Five RANS simulations of the Cessna 172 wing profile, run at the aircraft's own published flight conditions rather than arbitrary speeds.</p>
       <div class="cols">
         <div>
-          <div class="blk"><h4>Problem</h4><p>Characterize lift and drag on a rigid body in external flow, with convergence, force, pressure, velocity, and turbulence results reported for every run &mdash; on a cloud CFD account capped at ten simulations, so each setup had to be right the first time.</p></div>
+          <div class="blk"><h4>Problem</h4><p>Characterize lift and drag on a rigid body in external flow, with convergence, force, pressure, velocity, and turbulence results reported for every run, on a cloud CFD account capped at ten simulations, so each setup had to be right the first time.</p></div>
           <div class="blk"><h4>Approach</h4><ul>
-            <li>Modeled the section in SolidWorks at c = 0.2 m, then caught an import error &mdash; normalized coordinates had come in at 1 mm chord &mdash; by measuring face area and diagonal, and corrected it with a uniform 200&times; scale.</li>
+            <li>Modeled the section in SolidWorks at c = 0.2 m, then caught an import error (normalized coordinates had come in at 1 mm chord) by measuring face area and diagonal, and corrected it with a uniform 200&times; scale.</li>
             <li>Chose k&ndash;&omega; SST over k&ndash;&epsilon; because the &omega;-equation resolves the near-wall region, which governs adverse pressure gradient and separation onset on an airfoil approaching stall.</li>
             <li>Set slip conditions on the outer domain walls: an airfoil flies in free air, so the standard no-slip road-surface example does not apply and would grow fictitious boundary layers on the domain boundary.</li>
             <li>Imposed angle of attack at the inlet so geometry and mesh stayed identical across all five runs.</li>
             <li>Validated against published two-dimensional NACA 2412 polars, then explained the disagreement instead of hiding it.</li>
           </ul></div>
           <div class="blk"><h4>Result</h4>
-            <p>Drag coefficient fell 21% across the Reynolds sweep (0.01963 &rarr; 0.01553) while lift coefficient stayed flat, so the dimensional forces tracked V&sup2; to within 1% &mdash; lift grew from 3.37 N to 40.71 N for a 3.47&times; speed increase, against a predicted 12.0&times;. Best L/D was 15.2.</p>
+            <p>Drag coefficient fell 21% across the Reynolds sweep (0.01963 &rarr; 0.01553) while lift coefficient stayed flat, so the dimensional forces tracked V&sup2; to within 1%: lift grew from 3.37 N to 40.71 N for a 3.47&times; speed increase, against a predicted 12.0&times;. Best L/D was 15.2.</p>
             <p>The simulated lift-curve slope (&asymp;0.013/deg) sits well below the 2-D value (&asymp;0.11/deg). That is not an error: the model is a finite wing of aspect ratio 1 with free tips, and the measured drag rise above &alpha; = 0&deg; matches the induced-drag estimate C<sub>l</sub>&sup2;/&pi;AR to the same order, confirming the three-dimensional reading.</p>
           </div>
           <div class="tags"><span class="tag">SimScale</span><span class="tag">SolidWorks</span><span class="tag">RANS k&ndash;&omega; SST</span><span class="tag">Mesh convergence</span><span class="tag">Python</span></div>
@@ -432,7 +446,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
             <figcaption>Velocity magnitude at cruise (62.8 m/s, &alpha; = 0&deg;).</figcaption>
           </figure>
           <div class="figs">
-            <figure><img src="images/cfd-velocity-aoa10.png" alt="Velocity contour at 10 degrees angle of attack"><figcaption>&alpha; = 10&deg; &mdash; wake thickens.</figcaption></figure>
+            <figure><img src="images/cfd-velocity-aoa10.png" alt="Velocity contour at 10 degrees angle of attack"><figcaption>&alpha; = 10&deg;, wake thickens.</figcaption></figure>
             <figure><img src="images/cfd-pressure-cruise.png" alt="Static pressure field at cruise"><figcaption>Static pressure, cruise.</figcaption></figure>
           </div>
         </div>
@@ -443,7 +457,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
     <article class="card" data-tags="fea cad">
       <div class="card-meta"><span class="code">ME 37100</span><span>Computer-Aided Design</span><span class="when">Spring 2026 &middot; Individual</span></div>
       <h3>Complete bicycle: design and structural validation for a 100 kg rider</h3>
-      <p class="thesis">A full bicycle modeled in SolidWorks, with every load-bearing part checked twice &mdash; once by hand, once by FEA &mdash; and the two results reconciled.</p>
+      <p class="thesis">A full bicycle modeled in SolidWorks, with every load-bearing part checked twice, once by hand and once by FEA, with the two results reconciled.</p>
       <div class="cols">
         <div>
           <div class="blk"><h4>Problem</h4><p>Can a junior engineer, using only undergraduate beam theory, FEA, and materials selection, deliver a bicycle that safely carries a 100 kg rider? Success meant FoS &ge; 2 against yield on every static study, a buckling load factor &ge; 4 on the fork, and FoS &gt; 1 against ultimate strength for the rim under impact.</p></div>
@@ -470,7 +484,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
           </div>
           <figure>
             <img src="images/bike-assembly.jpg" alt="SolidWorks render of the complete bicycle assembly" loading="lazy">
-            <figcaption>The full assembly in SolidWorks 2026 &mdash; frame, fork, drivetrain, wheels and cockpit, mated to confirm integration.</figcaption>
+            <figcaption>The full assembly in SolidWorks 2026: frame, fork, drivetrain, wheels and cockpit, mated to confirm integration.</figcaption>
           </figure>
           <div class="figs">
             <figure>
@@ -490,15 +504,15 @@ section[id], .gallery{ scroll-margin-top:68px; }
     <article class="card" data-tags="fea">
       <div class="card-meta"><span class="code">ME 47200</span><span>Mechanical Systems Design</span><span class="when">Spring 2026 &middot; Team of 2</span></div>
       <h3>Cantilevered jib crane: beam, weld, and bolted moment connection</h3>
-      <p class="thesis">A 50 kN wall-mounted jib designed for ten years of service &mdash; statically indeterminate, so the redundant reaction had to be recovered before anything could be sized.</p>
+      <p class="thesis">A 50 kN wall-mounted jib designed for ten years of service, and statically indeterminate, so the redundant reaction had to be recovered before anything could be sized.</p>
       <div class="cols">
         <div>
           <div class="blk"><h4>Problem</h4><p>Size a cable-supported cantilever jib to lift 50 kN through 25 fully loaded cycles a day for ten years (91,250 cycles) at a factor of safety of 1.5 against both yielding and fatigue, then design the weld and bolt group that carries it into the wall.</p></div>
           <div class="blk"><h4>Approach</h4><ul>
-            <li>Recognized the structure as statically indeterminate to degree 1, took the cable tension as the redundant, and solved it by Castigliano superposition &mdash; giving T = 87.5 kN, larger than the load itself, which forces the wall to anchor the beam <em>down</em> at 37.5 kN.</li>
+            <li>Recognized the structure as statically indeterminate to degree 1, took the cable tension as the redundant, and solved it by Castigliano superposition, giving T = 87.5 kN, larger than the load itself, which forces the wall to anchor the beam <em>down</em> at 37.5 kN.</li>
             <li>Placed the load at the free end as the deliberate worst case, then found the critical section at the cable rather than at the wall.</li>
             <li>Ran the fatigue check in the finite-life regime with Marin factors, deriving the size factor through the equivalent-diameter approach for a non-rotating I-beam in bending.</li>
-            <li>Checked the weld for fatigue as well as yield &mdash; a 5 mm fillet passes statically but fails fatigue at n = 1.11, so the specification went to 8 mm.</li>
+            <li>Checked the weld for fatigue as well as yield: a 5 mm fillet passes statically but fails fatigue at n = 1.11, so the specification went to 8 mm.</li>
           </ul></div>
           <div class="blk"><h4>Result</h4><p>A UB 356 &times; 171 &times; 51 section clears both checks (n<sub>y</sub> = 1.67 static, n<sub>f</sub> = 1.76 Goodman). Hand calculation and FEM agreed to 0.5% at the critical section on a mesh converged to 1.5%. A deliberate sabotage run with the cable removed produced &sigma;<sub>VM</sub> &asymp; 500 MPa and 200 mm of tip deflection, confirming the cable is doing exactly what the analysis said.</p></div>
           <div class="tags"><span class="tag">Shigley method</span><span class="tag">Castigliano</span><span class="tag">Goodman fatigue</span><span class="tag">SolidWorks Simulation</span><span class="tag">LaTeX</span></div>
@@ -521,7 +535,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
           </div>
           <figure>
             <img src="images/jib-crane-fea.png" alt="Von Mises stress along the jib beam, peak at the cable support" loading="lazy">
-            <figcaption>FEM von Mises along the beam. The peak sits at the cable support, not the wall &mdash; exactly where the hand calculation put it, and the section that sized the member.</figcaption>
+            <figcaption>FEM von Mises along the beam. The peak sits at the cable support, not the wall, exactly where the hand calculation put it, and the section that sized the member.</figcaption>
           </figure>
         </div>
       </div>
@@ -537,7 +551,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
           <div class="blk"><h4>Problem</h4><p>Design the high-pressure control stage of a steam turbine for throttle conditions of 1600 psi and 1000 &deg;F at 345.7 lbm/s, extracting a 26 Btu/lbm isentropic enthalpy drop, with stage loading &psi; &lt; 3 and stage efficiency at or above 90%.</p></div>
           <div class="blk"><h4>Approach</h4><ul>
             <li>Worked a 15-step mean-line design: spouting velocity from the enthalpy drop, blade speed from the blade-speed ratio, velocity triangles at nozzle and rotor exit, then flow areas, blade height, chord, spacing, and blade count.</li>
-            <li>Fixed rotational speed at 3600 rpm because the rotor couples directly to a two-pole 60 Hz generator &mdash; which, with the target blade speed, sets the mean radius rather than leaving it free.</li>
+            <li>Fixed rotational speed at 3600 rpm because the rotor couples directly to a two-pole 60 Hz generator, which, with the target blade speed, sets the mean radius rather than leaving it free.</li>
             <li>Sized blade spacing with the Zweifel criterion and carried a blade friction factor through, so the efficiency figure is an estimate rather than an ideal.</li>
             <li>Swept nozzle outlet angle from 8&deg; to 15&deg; to map the loading-versus-efficiency trade and confirm the chosen 10.5&deg; sits in the optimal band.</li>
           </ul></div>
@@ -570,15 +584,15 @@ section[id], .gallery{ scroll-margin-top:68px; }
       <p class="thesis">A year of field measurement across four boroughs, turned into a data pipeline and a finding that air conditioning helps far less than riders assume.</p>
       <div class="cols">
         <div>
-          <div class="blk"><h4>Problem</h4><p>Heat waves are intensifying, and underground transit is among the most exposed infrastructure in the city &mdash; but nobody had characterized how much hotter platforms actually get, or whether stations with cooling systems were meaningfully better for riders and transit workers.</p></div>
+          <div class="blk"><h4>Problem</h4><p>Heat waves are intensifying, and underground transit is among the most exposed infrastructure in the city, but nobody had characterized how much hotter platforms actually get, or whether stations with cooling systems were meaningfully better for riders and transit workers.</p></div>
           <div class="blk"><h4>Approach</h4><ul>
             <li>Collected temperature and relative humidity with sensors and thermal infrared cameras across underground stations in the Bronx, Brooklyn, Manhattan, and Queens, over multiple seasons.</li>
             <li>Owned the data pipeline: cleaning, time alignment across stations and collection dates, and visualization in Python and MATLAB.</li>
             <li>Learned QGIS to build spatial maps of the findings, so the pattern could be read borough by borough instead of station by station.</li>
-            <li>Coordinated line coverage and thermal-camera logistics with the student team so collection windows stayed comparable between rounds &mdash; the constraint that made the seasonal comparison valid.</li>
+            <li>Coordinated line coverage and thermal-camera logistics with the student team so collection windows stayed comparable between rounds, the constraint that made the seasonal comparison valid.</li>
           </ul></div>
           <div class="blk"><h4>Result</h4>
-            <p>Platforms run consistently hotter and more humid than the surface. Queens and Brooklyn had the hottest platforms; the Bronx was coolest but most humid; Manhattan managed both high heat and high humidity despite having air conditioning. Cooled stations averaged 87.1 &deg;F in summer against 95.11 &deg;F elsewhere &mdash; real, but a smaller gap than the presence of AC suggests. Thermal imagery also showed structural beams transmitting heat down onto platforms.</p>
+            <p>Platforms run consistently hotter and more humid than the surface. Queens and Brooklyn had the hottest platforms; the Bronx was coolest but most humid; Manhattan managed both high heat and high humidity despite having air conditioning. Cooled stations averaged 87.1 &deg;F in summer against 95.11 &deg;F elsewhere. The difference is real, but smaller than the presence of AC suggests. Thermal imagery also showed structural beams transmitting heat down onto platforms.</p>
             <p>Presented at the American Geophysical Union meeting in Washington, D.C. and the American Meteorological Society meeting in New Orleans.</p>
           </div>
           <div class="tags"><span class="tag">Python</span><span class="tag">MATLAB</span><span class="tag">QGIS</span><span class="tag">Thermal IR imaging</span><span class="tag">Field instrumentation</span></div>
@@ -605,7 +619,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
           </div>
           <figure>
             <img src="images/subway-thermal.jpg" alt="Thermal infrared image of a subway platform reading about 109 degrees Fahrenheit" loading="lazy">
-            <figcaption>FLIR capture on a platform: ~109&nbsp;&deg;F at the ceiling against 85&nbsp;&deg;F at track level. The ceiling structure reads hottest &mdash; the heat path the study set out to document.</figcaption>
+            <figcaption>FLIR capture on a platform: ~109&nbsp;&deg;F at the ceiling against 85&nbsp;&deg;F at track level. The ceiling structure reads hottest, the heat path the study set out to document.</figcaption>
           </figure>
           <div class="figs">
             <figure>
@@ -624,14 +638,14 @@ section[id], .gallery{ scroll-margin-top:68px; }
       <p class="thesis">A ground-up build: chassis designed in Fusion 360 and printed in PLA, sensors and servos driven by an Arduino UNO, delivered inside a fixed parts budget.</p>
       <div class="cols">
         <div>
-          <div class="blk"><h4>Problem</h4><p>Design and build an autonomous robot that follows a black tape line, collects ping-pong balls along the route, and dumps them at the end &mdash; within imposed limits on dimensions and mode of operation, and with cost and safety treated as design constraints.</p></div>
+          <div class="blk"><h4>Problem</h4><p>Design and build an autonomous robot that follows a black tape line, collects ping-pong balls along the route, and dumps them at the end, within imposed limits on dimensions and mode of operation, and with cost and safety treated as design constraints.</p></div>
           <div class="blk"><h4>Approach</h4><ul>
-            <li>Designed the chassis in Fusion 360 around the components it had to carry &mdash; battery pack, breadboard, servos, sensor mounts, ball hopper &mdash; then printed the whole structure in PLA.</li>
+            <li>Designed the chassis in Fusion 360 around the components it had to carry (battery pack, breadboard, servos, sensor mounts, ball hopper), then printed the whole structure in PLA.</li>
             <li>Wired IR obstacle-avoidance sensors and an IR break-beam sensor to sequence operation: the sensors decide when the robot turns, when it grabs, and when it releases.</li>
             <li>Programmed the Arduino UNO as a set of functions inside a continuous loop, so line following, collection, and dumping run as one uninterrupted routine.</li>
             <li>Iterated on the first prototype: the original chassis sat too high off the ground to pick up a ball, so the team designed and attached a front ramp.</li>
           </ul></div>
-          <div class="blk"><h4>Result</h4><p>The robot ran the course autonomously &mdash; following the tape, curving where needed, collecting balls, and dumping them at the finish. The build came in around $185 in parts. The team named PID control for the line-following loop as the next step, since bang-bang behavior was the limit on precision.</p></div>
+          <div class="blk"><h4>Result</h4><p>The robot ran the course autonomously: following the tape, curving where needed, collecting balls, and dumping them at the finish. The build came in around $185 in parts. The team named PID control for the line-following loop as the next step, since bang-bang behavior was the limit on precision.</p></div>
           <div class="tags"><span class="tag">Fusion 360</span><span class="tag">FDM 3D printing</span><span class="tag">Arduino UNO</span><span class="tag">C/C++</span><span class="tag">IR sensors</span></div>
         </div>
         <div>
@@ -648,7 +662,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
           </div>
           <figure>
             <img src="images/bulldozer-robot.jpg" alt="The assembled Bulldozer MK I robot with printed chassis, Arduino, servos and ball hopper" loading="lazy">
-            <figcaption>Bulldozer MK I assembled &mdash; printed chassis, Arduino UNO, drive servos, and the collection hopper.</figcaption>
+            <figcaption>Bulldozer MK I assembled: printed chassis, Arduino UNO, drive servos, and the collection hopper.</figcaption>
           </figure>
           <div class="figs">
             <figure>
@@ -669,7 +683,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
         <div>
           <div class="blk"><h4>Problem</h4><p>Drive a six-servo robotic arm to pick up a cube and place it at two different positions from a calibrated zero pose. Separately, establish the relationship between robot coordinates and physical coordinates, and validate the formula relating Z to X and Y.</p></div>
           <div class="blk"><h4>Approach</h4><ul>
-            <li>Calibrated all six servos to a zero reference pose, then built the motion script two ways &mdash; teaching positions through the manual controls and saving the result, and writing servo values directly in code &mdash; and compared them.</li>
+            <li>Calibrated all six servos to a zero reference pose, then built the motion script two ways and compared them: teaching positions through the manual controls and saving the result, then writing servo values directly in code.</li>
             <li>Wrapped the sequence in a macro loop so the pick-and-place cycle could repeat a specified number of times.</li>
             <li>Simulated the intersection of the arm's work envelope with the Oxy plane and with a vertical plane at zero elevation angle, and checked the derived Z(X, Y) relationship against those intersections.</li>
           </ul></div>
@@ -688,7 +702,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
           </div>
           <figure>
             <img src="images/robotic-arm.jpg" alt="The six-servo robotic arm gripping a wooden cube mid pick-and-place" loading="lazy">
-            <figcaption>The arm holding the cube at the pick position. The same end point is reachable through more than one set of joint angles &mdash; choosing which was the hard part.</figcaption>
+            <figcaption>The arm holding the cube at the pick position. The same end point is reachable through more than one set of joint angles. Choosing which was the hard part.</figcaption>
           </figure>
           <div class="figs">
             <figure>
@@ -704,7 +718,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
     <article class="card" data-tags="fea">
       <div class="card-meta"><span class="code">ESC 111</span><span>Elements of Engineering Design, BMCC</span><span class="when">Fall 2023 &middot; Team of 6</span></div>
       <h3>Tongue-depressor bridge: SAP2000 truss analysis, then a real load test</h3>
-      <p class="thesis">Analysis first, construction second &mdash; and the bridge held 152 lb against a 150 lb requirement, with no member failures.</p>
+      <p class="thesis">Analysis first, construction second. The bridge held 152 lb against a 150 lb requirement, with no member failures.</p>
       <div class="cols">
         <div>
           <div class="blk"><h4>Problem</h4><p>Design and build a bridge from tongue depressors, nuts, and bolts that carries a 150 lb load without any structural member breaking. The design had to be justified by analysis before a single stick was glued.</p></div>
@@ -712,7 +726,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
             <li>Built the truss as individual frames in SAP2000 and read out the axial force in every member, using sign to separate tension from compression.</li>
             <li>Studied how force distribution changes with member angle at constant applied load, and exploited geometric and load symmetry so the whole structure did not have to be scrutinized joint by joint.</li>
             <li>Tested a single stick to establish its allowable force, then worked backward from the member forces to the number of sticks each member needed.</li>
-            <li>Carried the analysis through progressive stages &mdash; one-, two-, and three-bay trusses first &mdash; comparing theoretical against experimental forces before committing to the final geometry.</li>
+            <li>Carried the analysis through progressive stages (one-, two-, and three-bay trusses first), comparing theoretical against experimental forces before committing to the final geometry.</li>
           </ul></div>
           <div class="blk"><h4>Result</h4><p>Members 1 and 11&ndash;15 were identified as the compression members, a single stick was rated at 16.96 lb, and the analysis called for 117 sticks. Only one change was needed between analysis and built structure. Under test it carried 152 lb with no member failures, which made SAP2000's prediction as much the result as the bridge was.</p></div>
           <div class="tags"><span class="tag">SAP2000</span><span class="tag">Truss analysis</span><span class="tag">Method of joints</span><span class="tag">Physical load testing</span></div>
@@ -746,12 +760,12 @@ section[id], .gallery{ scroll-margin-top:68px; }
     <article class="card" data-tags="cad">
       <div class="card-meta"><span class="code">ME 46100</span><span>Engineering Materials</span><span class="when">Spring 2026 &middot; Team of 3</span></div>
       <h3>Materials selection for bicycle frames: why four material classes coexist</h3>
-      <p class="thesis">Most structural applications settle on one material class. The bicycle industry runs four at once &mdash; this project used Ashby indices to explain why that segmentation is rational.</p>
+      <p class="thesis">Most structural applications settle on one material class. The bicycle industry runs four at once. This project used Ashby indices to explain why that segmentation is rational.</p>
       <div class="cols">
         <div>
           <div class="blk"><h4>Problem</h4><p>A road frame sees peak bottom-bracket loads above 1,500 N and millions of fatigue cycles, while the designer minimizes mass, controls compliance, and keeps cost accessible. No single material wins on every axis, so the question is not "which is best" but "which is best for which segment."</p></div>
           <div class="blk"><h4>Approach</h4><ul>
-            <li>Characterized the loading environment member by member &mdash; axial in seat and down tubes, bending in the top and down tubes, torsion in the rear triangle, cyclic fatigue at every welded or bonded junction.</li>
+            <li>Characterized the loading environment member by member: axial in seat and down tubes, bending in the top and down tubes, torsion in the rear triangle, cyclic fatigue at every welded or bonded junction.</li>
             <li>Traced each material's macroscopic properties to its microstructure and crystal structure, then examined how processing reshapes that microstructure.</li>
             <li>Applied Ashby performance indices (E/&rho; for axial stiffness, E<sup>1/2</sup>/&rho; for bending) rather than comparing raw property values.</li>
           </ul></div>
@@ -783,11 +797,11 @@ section[id], .gallery{ scroll-margin-top:68px; }
           <div class="blk"><h4>Problem</h4><p>Take a residential structure from load definition through member sizing to a costed bill of materials, working under real construction codes rather than textbook idealizations.</p></div>
           <div class="blk"><h4>Approach</h4><ul>
             <li>Worked through dead, live, dynamic, and wind loads in PSF and PLF, separating point loads on columns from area loads on joists and beams, and traced the load path floor &rarr; beams &rarr; girders &rarr; columns &rarr; foundation &rarr; soil.</li>
-            <li>Sized members in WoodWorks, then moved to Sizer for the full floor plan &mdash; and compared the two tools directly.</li>
+            <li>Sized members in WoodWorks, then moved to Sizer for the full floor plan, and compared the two tools directly.</li>
             <li>Designed beams, columns, joists, walls, and stairs against AASHTO, IBC, and ACI provisions.</li>
             <li>Built the cost analysis from the design, and stated its limit plainly: materials only, no labor.</li>
           </ul></div>
-          <div class="blk"><h4>Result</h4><p>A complete 30 &times; 28 ft structural design with a $98,766 material budget, broken down by member type &mdash; columns dominated at $46,400, roughly three times the beam cost. This was also the project that moved him from civil toward mechanical.</p></div>
+          <div class="blk"><h4>Result</h4><p>A complete 30 &times; 28 ft structural design with a $98,766 material budget, broken down by member type: columns dominated at $46,400, roughly three times the beam cost. This was also the project that moved me from civil toward mechanical.</p></div>
           <div class="tags"><span class="tag">WoodWorks</span><span class="tag">Sizer</span><span class="tag">AASHTO / IBC / ACI</span><span class="tag">Cost estimation</span></div>
         </div>
         <div>
@@ -817,17 +831,17 @@ section[id], .gallery{ scroll-margin-top:68px; }
     <article class="card">
       <div class="card-meta"><span class="code">IMPACT</span><span>Mentoring Program, BMCC</span><span class="when">Jan 2024 &ndash; Jan 2026</span></div>
       <h3>Supervising mentor, timekeeper, and HR coordinator</h3>
-      <p class="thesis">Promoted from peer mentor into the role that keeps the program running &mdash; payroll accuracy, onboarding compliance, and the mentors themselves.</p>
+      <p class="thesis">Promoted from peer mentor into the role that keeps the program running: payroll accuracy, onboarding compliance, and the mentors themselves.</p>
       <div class="cols">
         <div>
-          <div class="blk"><h4>The system he owned</h4><ul>
-            <li>Reviewed and audited weekly timesheets for 25&ndash;30 student employees, catching errors before they reached payroll &mdash; across two and a half years of week-by-week records.</li>
+          <div class="blk"><h4>The system I owned</h4><ul>
+            <li>Reviewed and audited weekly timesheets for 25&ndash;30 student employees, catching errors before they reached payroll, across two and a half years of week-by-week records.</li>
             <li>Ran onboarding end to end, including the hardest case: F-1 international students without a Social Security Number, walked step by step through ISSO work authorization, the SSA appointment, and final employment verification.</li>
-            <li>Served as the liaison between mentors, program staff, and college administration &mdash; the first point of contact when something in a mentor's role went wrong.</li>
+            <li>Served as the liaison between mentors, program staff, and college administration, the first point of contact when something in a mentor's role went wrong.</li>
             <li>Built the tracking systems and operational reports the program ran on, and wrote the guide new mentors are onboarded with.</li>
           </ul></div>
-          <div class="blk"><h4>How he led</h4><p>His stated philosophy is clarity, structure, and empathy, and it shows in how he set expectations with his circle: deadlines exist for a reason, everyone is a gear in the same system, decide for yourself what you share with mentees, come to me first, and tell me what I could do better. That last one was not decoration &mdash; he asked his mentors for feedback on his own performance, in writing, in the first session.</p></div>
-          <div class="blk"><h4>Mentoring, one student at a time</h4><p>Alongside the operations he carried his own mentees: rebuilding a student's next-semester schedule after a bad advisement path that would have cost him nearly a year; working through the financial case for summer classes with another, scholarships and part-time work included; taking a call from a third during finals week when meeting in person was impossible.</p></div>
+          <div class="blk"><h4>How I led</h4><p>I set the expectations with my circle in the first session: deadlines exist for a reason, everyone is a gear in the same system, decide for yourself what you share with mentees, come to me first, and tell me what I could do better. I meant the last one. I asked my mentors for written feedback on my own performance that same session, before they had any reason to trust me with it.</p></div>
+          <div class="blk"><h4>Mentoring, one student at a time</h4><p>Alongside the operations I carried my own mentees: rebuilding a student's next-semester schedule after a bad advisement path that would have cost him nearly a year; working through the financial case for summer classes with another, scholarships and part-time work included; taking a call from a third during finals week when meeting in person was impossible.</p></div>
           <div class="tags"><span class="tag">Payroll audit</span><span class="tag">HR compliance</span><span class="tag">Onboarding</span><span class="tag">Excel</span><span class="tag">Bilingual EN/ES</span></div>
         </div>
         <div>
@@ -849,10 +863,10 @@ section[id], .gallery{ scroll-margin-top:68px; }
       <summary>Photos from the program <span class="count">(3)</span> <svg class="chev" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="gal-grid">
         <figure>
-          <button class="shot" type="button" data-full="images/leadership/impact-1.jpg" data-cap="The mentor team. Coordinating this group &mdash; scheduling, onboarding, payroll &mdash; was the job." aria-label="Open larger: The IMPACT mentor team together at a program event">
+          <button class="shot" type="button" data-full="images/leadership/impact-1.jpg" data-cap="The mentor team. Coordinating this group (scheduling, onboarding, payroll) was the job." aria-label="Open larger: The IMPACT mentor team together at a program event">
             <img src="images/leadership/impact-1.jpg" alt="The IMPACT mentor team together at a program event" loading="lazy">
           </button>
-          <figcaption>The mentor team. Coordinating this group &mdash; scheduling, onboarding, payroll &mdash; was the job.</figcaption>
+          <figcaption>The mentor team. Coordinating this group (scheduling, onboarding, payroll) was the job.</figcaption>
         </figure>
         <figure>
           <button class="shot" type="button" data-full="images/leadership/impact-2.jpg" data-cap="With mentees and mentors on campus." aria-label="Open larger: Isaac with fellow students at a campus IMPACT event">
@@ -871,8 +885,60 @@ section[id], .gallery{ scroll-margin-top:68px; }
   </div>
 </section>
 
+<!-- ================= PUBLICATIONS ================= -->
+<section class="band" id="publications">
+  <div class="page">
+    <div class="sec-head">
+      <h2 class="sec-title">Publications</h2>
+      <p class="sec-sub">The field measurements behind the conference posters below became a peer-reviewed journal paper in September 2026.</p>
+    </div>
+
+    <article class="card">
+      <div class="card-meta">
+        <span class="code">Peer-reviewed</span>
+        <span>Building and Environment &middot; Elsevier</span>
+        <span class="when">September 2026 &middot; Open access</span>
+      </div>
+
+      <h3>The Hidden Heatwave: Thermal Hazards in the New York City Subway System</h3>
+
+      <p class="authors">A. R. Bah, M. Muntaha, L. Metlitsky, C. P. Vasquez, T. Ayala, <strong>I. Morel Lopez</strong>, S. Larose, K. Ditsch, K. Nielsen, S. Sharma, R. Blake, H. Norouzi</p>
+
+      <div class="cols">
+        <div>
+          <div class="blk"><h4>The study</h4>
+            <p>Thermal conditions on New York City subway platforms, measured inside the stations themselves rather than inferred from street-level weather. Riders wait underground in air that the surface forecast does not describe, and the gap between the two is the point.</p>
+          </div>
+          <div class="blk"><h4>My contribution</h4>
+            <p>Field measurement and data reduction. I recorded platform temperature and humidity at several stations across different operating periods, then cleaned the datasets and synchronized their timestamps in MATLAB and Python so runs taken on different days, by different loggers, could be read on one axis.</p>
+            <p>The alignment took the most time. Raw logger output from a subway platform drifts, and a sensor left on a bench reads nothing worth keeping. Checking a dataset before trusting any conclusion drawn from it is the habit the project left me with.</p>
+          </div>
+          <div class="tags"><span class="tag">Field instrumentation</span><span class="tag">MATLAB</span><span class="tag">Python</span><span class="tag">Time-series alignment</span><span class="tag">Heat index</span><span class="tag">NSF &amp; NOAA funded</span></div>
+        </div>
+        <div>
+          <div class="panel"><h4>Record</h4>
+            <table class="spec"><tbody>
+              <tr><td>Journal</td><td>Building and Environment</td></tr>
+              <tr><td>Publisher</td><td>Elsevier</td></tr>
+              <tr><td>Online</td><td>26 September 2026</td></tr>
+              <tr><td>Access</td><td>Open, Creative Commons</td></tr>
+              <tr><td>Authors</td><td>12</td></tr>
+              <tr><td>Author position</td><td>6th</td></tr>
+            </tbody></table>
+          </div>
+        </div>
+      </div>
+
+      <div class="pub-links">
+        <a class="btn btn-solid" href="https://doi.org/10.1016/j.buildenv.2026.115327" target="_blank" rel="noopener">Read the paper</a>
+        <span class="pub-doi">DOI: 10.1016/j.buildenv.2026.115327</span>
+      </div>
+    </article>
+  </div>
+</section>
+
 <!-- ================= CONFERENCES ================= -->
-<section class="band" id="conferences">
+<section class="band grey" id="conferences">
   <div class="page">
     <div class="sec-head">
       <h2 class="sec-title">Conferences</h2>
@@ -889,22 +955,22 @@ section[id], .gallery{ scroll-margin-top:68px; }
       <summary>Photos from the conferences <span class="count">(10)</span> <svg class="chev" width="12" height="8" viewBox="0 0 12 8" fill="none" aria-hidden="true"><path d="M1 1.5 6 6.5l5-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></summary>
       <div class="gal-grid">
         <figure>
-          <button class="shot" type="button" data-full="images/conferences/agu-1.jpg" data-cap="AGU 2024, Washington D.C. &mdash; walking a visitor through the results." aria-label="Open larger: Isaac presenting the subway heat poster at the AGU annual meeting">
+          <button class="shot" type="button" data-full="images/conferences/agu-1.jpg" data-cap="AGU 2024, Washington D.C. Walking a visitor through the results." aria-label="Open larger: Isaac presenting the subway heat poster at the AGU annual meeting">
             <img src="images/conferences/agu-1.jpg" alt="Isaac presenting the subway heat poster at the AGU annual meeting" loading="lazy">
           </button>
-          <figcaption>AGU 2024, Washington D.C. &mdash; walking a visitor through the results.</figcaption>
+          <figcaption>AGU 2024, Washington D.C. Walking a visitor through the results.</figcaption>
         </figure>
         <figure>
-          <button class="shot" type="button" data-full="images/conferences/agu-2.jpg" data-cap="AGU 2024 &mdash; fielding questions at the board." aria-label="Open larger: Isaac discussing the poster with two attendees at AGU">
+          <button class="shot" type="button" data-full="images/conferences/agu-2.jpg" data-cap="AGU 2024. Fielding questions at the board." aria-label="Open larger: Isaac discussing the poster with two attendees at AGU">
             <img src="images/conferences/agu-2.jpg" alt="Isaac discussing the poster with two attendees at AGU" loading="lazy">
           </button>
-          <figcaption>AGU 2024 &mdash; fielding questions at the board.</figcaption>
+          <figcaption>AGU 2024. Fielding questions at the board.</figcaption>
         </figure>
         <figure>
-          <button class="shot" type="button" data-full="images/conferences/agu-3.jpg" data-cap="AGU 2024 &mdash; one-on-one at the poster." aria-label="Open larger: Isaac in conversation with an attendee in front of the AGU poster">
+          <button class="shot" type="button" data-full="images/conferences/agu-3.jpg" data-cap="AGU 2024. One-on-one at the poster." aria-label="Open larger: Isaac in conversation with an attendee in front of the AGU poster">
             <img src="images/conferences/agu-3.jpg" alt="Isaac in conversation with an attendee in front of the AGU poster" loading="lazy">
           </button>
-          <figcaption>AGU 2024 &mdash; one-on-one at the poster.</figcaption>
+          <figcaption>AGU 2024. One-on-one at the poster.</figcaption>
         </figure>
         <figure>
           <button class="shot" type="button" data-full="images/conferences/agu-team.jpg" data-cap="The CUNY&ndash;MTA student team in the poster hall." aria-label="Open larger: Isaac with the CUNY-MTA student research team in the AGU poster hall">
@@ -913,16 +979,16 @@ section[id], .gallery{ scroll-margin-top:68px; }
           <figcaption>The CUNY&ndash;MTA student team in the poster hall.</figcaption>
         </figure>
         <figure>
-          <button class="shot" type="button" data-full="images/conferences/ams-1.jpg" data-cap="AMS 2025, New Orleans &mdash; at the board with the badge on." aria-label="Open larger: Isaac standing beside the subway heat poster at the AMS annual meeting">
+          <button class="shot" type="button" data-full="images/conferences/ams-1.jpg" data-cap="AMS 2025, New Orleans. At the board with the badge on." aria-label="Open larger: Isaac standing beside the subway heat poster at the AMS annual meeting">
             <img src="images/conferences/ams-1.jpg" alt="Isaac standing beside the subway heat poster at the AMS annual meeting" loading="lazy">
           </button>
-          <figcaption>AMS 2025, New Orleans &mdash; at the board with the badge on.</figcaption>
+          <figcaption>AMS 2025, New Orleans. At the board with the badge on.</figcaption>
         </figure>
         <figure>
-          <button class="shot" type="button" data-full="images/conferences/ams-poster.jpg" data-cap="The poster itself &mdash; methods, seasonal heat-index results, and the AC comparison." aria-label="Open larger: The AMS poster: Heating Monitoring in the New York Subway System">
+          <button class="shot" type="button" data-full="images/conferences/ams-poster.jpg" data-cap="The poster itself: methods, seasonal heat-index results, and the AC comparison." aria-label="Open larger: The AMS poster: Heating Monitoring in the New York Subway System">
             <img src="images/conferences/ams-poster.jpg" alt="The AMS poster: Heating Monitoring in the New York Subway System" loading="lazy">
           </button>
-          <figcaption>The poster itself &mdash; methods, seasonal heat-index results, and the AC comparison.</figcaption>
+          <figcaption>The poster itself: methods, seasonal heat-index results, and the AC comparison.</figcaption>
         </figure>
         <figure>
           <button class="shot" type="button" data-full="images/conferences/ams-team.jpg" data-cap="The cohort and faculty advisors." aria-label="Open larger: Group photo of the research cohort and faculty advisors at the AMS meeting">
@@ -931,10 +997,10 @@ section[id], .gallery{ scroll-margin-top:68px; }
           <figcaption>The cohort and faculty advisors.</figcaption>
         </figure>
         <figure>
-          <button class="shot" type="button" data-full="images/conferences/cypass-1.jpg" data-cap="CY-PASS symposium, City College &mdash; presenting Bulldozer MK I." aria-label="Open larger: Isaac presenting the Bulldozer MK I poster at the City College symposium">
+          <button class="shot" type="button" data-full="images/conferences/cypass-1.jpg" data-cap="CY-PASS symposium, City College. Presenting Bulldozer MK I." aria-label="Open larger: Isaac presenting the Bulldozer MK I poster at the City College symposium">
             <img src="images/conferences/cypass-1.jpg" alt="Isaac presenting the Bulldozer MK I poster at the City College symposium" loading="lazy">
           </button>
-          <figcaption>CY-PASS symposium, City College &mdash; presenting Bulldozer MK I.</figcaption>
+          <figcaption>CY-PASS symposium, City College. Presenting Bulldozer MK I.</figcaption>
         </figure>
         <figure>
           <button class="shot" type="button" data-full="images/conferences/cypass-2.jpg" data-cap="With the team at the poster session." aria-label="Open larger: Isaac with teammates at the CY-PASS poster session">
@@ -943,10 +1009,10 @@ section[id], .gallery{ scroll-margin-top:68px; }
           <figcaption>With the team at the poster session.</figcaption>
         </figure>
         <figure>
-          <button class="shot" type="button" data-full="images/conferences/cypass-poster.jpg" data-cap="The Bulldozer poster &mdash; objectives, the ramp redesign, cost breakdown, and the control logic." aria-label="Open larger: The Bulldozer MK I project poster: objectives, design iterations, cost and programming">
+          <button class="shot" type="button" data-full="images/conferences/cypass-poster.jpg" data-cap="The Bulldozer poster: objectives, the ramp redesign, cost breakdown, and the control logic." aria-label="Open larger: The Bulldozer MK I project poster: objectives, design iterations, cost and programming">
             <img src="images/conferences/cypass-poster.jpg" alt="The Bulldozer MK I project poster: objectives, design iterations, cost and programming" loading="lazy">
           </button>
-          <figcaption>The Bulldozer poster &mdash; objectives, the ramp redesign, cost breakdown, and the control logic.</figcaption>
+          <figcaption>The Bulldozer poster: objectives, the ramp redesign, cost breakdown, and the control logic.</figcaption>
         </figure>
       </div>
     </details>
@@ -954,7 +1020,7 @@ section[id], .gallery{ scroll-margin-top:68px; }
 </section>
 
 <!-- ================= BACKGROUND ================= -->
-<section class="band grey" id="background">
+<section class="band" id="background">
   <div class="page">
     <div class="sec-head">
       <h2 class="sec-title">Background</h2>
